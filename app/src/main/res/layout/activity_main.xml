@@ -11,9 +11,14 @@
         android:id="@+id/materialToolbar"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="#57DC9E"
+        android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:menu="@menu/menu_toolbar"
+        app:title="VAGOTRI"
+        app:titleCentered="true"
+        app:titleTextColor="#575757"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="2dp" />
 
