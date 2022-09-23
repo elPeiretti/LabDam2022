@@ -30,4 +30,5 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/navegacion" />
 
+
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -97,6 +97,30 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:entries="@array/array_ciudades" />
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_buscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Buscar" />
+
+        <Button
+            android:id="@+id/button_resetear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Resetear" />
+    </LinearLayout>
+
+
 
 </LinearLayout>
