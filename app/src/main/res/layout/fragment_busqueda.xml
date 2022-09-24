@@ -4,12 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingTop="5dp"
+    android:paddingRight="5dp"
     tools:context=".BusquedaFragment">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/form_busqueda" />
 
     <CheckBox
         android:id="@+id/cb_hoteles"
@@ -42,13 +40,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="5dp">
 
         <TextView
             android:id="@+id/tv_capacidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Capacidad:" />
+            android:text="Capacidad:"
+            android:textSize="16sp" />
 
         <SeekBar
             android:id="@+id/sb_capacidad"
@@ -62,34 +62,78 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
         <TextView
-            android:id="@+id/tv_precios"
+            android:id="@+id/tv_precioMin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rango de precios" />
+            android:text="Precio mínimo"
+            android:textSize="16sp" />
 
         <SeekBar
-            android:id="@+id/sb_precios"
+            android:id="@+id/sb_precioMin"
             style="@style/Widget.AppCompat.SeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="4"
             android:max="6"
             android:progress="1" />
+
+        <TextView
+            android:id="@+id/tv_precioMinimo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$ xxxx"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/tv_precioMax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio máximo"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/sb_precioMax"
+            style="@style/Widget.AppCompat.SeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:max="6"
+            android:progress="1" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$ xxxx"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="5dp">
 
         <TextView
             android:id="@+id/tv_ciudad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="Ciudad:" />
+            android:text="Ciudad:"
+            android:textSize="16sp" />
 
         <Spinner
             android:id="@+id/spin_ciudad"
@@ -104,7 +148,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="5dp">
 
         <Button
             android:id="@+id/button_buscar"
@@ -113,6 +158,11 @@
             android:layout_weight="1"
             android:text="Buscar" />
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05" />
+
         <Button
             android:id="@+id/button_resetear"
             android:layout_width="wrap_content"
@@ -120,7 +170,6 @@
             android:layout_weight="1"
             android:text="Resetear" />
     </LinearLayout>
-
 
 
 </LinearLayout>

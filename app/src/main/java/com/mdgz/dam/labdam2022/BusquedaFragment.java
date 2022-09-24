@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
 
@@ -74,6 +75,21 @@ public class BusquedaFragment extends Fragment {
             public void onClick(View view) {
                 Log.e("app", "onClick: ");
                 NavHostFragment.findNavController(BusquedaFragment.this).navigate(R.id.action_busquedaFragment_to_resultadoBusquedaFragment);
+            }
+        });
+        CheckBox cbWifi = binding.cbWifi;
+        cbWifi.setEnabled(false);
+        CheckBox cbDepartamentos = binding.cbDepartamentos;
+      cbDepartamentos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cbDepartamentos.isChecked()){
+                    cbWifi.setEnabled(true);
+                }
+                else{
+                    cbWifi.setEnabled(false);
+                    cbWifi.setChecked(false);
+                }
             }
         });
 
