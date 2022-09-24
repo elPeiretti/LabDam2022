@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.SeekBar;
 
 import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
 
@@ -77,10 +78,12 @@ public class BusquedaFragment extends Fragment {
                 NavHostFragment.findNavController(BusquedaFragment.this).navigate(R.id.action_busquedaFragment_to_resultadoBusquedaFragment);
             }
         });
+
+        //CheckBox WiFi
         CheckBox cbWifi = binding.cbWifi;
         cbWifi.setEnabled(false);
         CheckBox cbDepartamentos = binding.cbDepartamentos;
-      cbDepartamentos.setOnClickListener(new View.OnClickListener() {
+        cbDepartamentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (cbDepartamentos.isChecked()){
@@ -92,6 +95,44 @@ public class BusquedaFragment extends Fragment {
                 }
             }
         });
+
+        //SeekBars
+        binding.sbCapacidad.setProgress(0);
+
+        binding.sbPrecioMin.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                binding.tvValorPrecioMin.setText("$"+binding.sbPrecioMin.getProgress());
+                binding.sbPrecioMax.setMin(binding.sbPrecioMin.getProgress());
+            }
+            @Override public void onStartTrackingTouch(SeekBar seekBar) { }
+            @Override public void onStopTrackingTouch(SeekBar seekBar) { }
+        });
+
+        binding.sbPrecioMax.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                binding.tvValorPrecioMax.setText("$"+binding.sbPrecioMax.getProgress());
+            }
+            @Override public void onStartTrackingTouch(SeekBar seekBar) { }
+            @Override public void onStopTrackingTouch(SeekBar seekBar) { }
+        });
+
+        //Resetear
+        binding.buttonResetear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.cbHoteles.setChecked(false);
+                binding.cbDepartamentos.setChecked(false);
+                binding.cbWifi.setEnabled(false);
+                binding.cbWifi.setChecked(false);
+                binding.sbCapacidad.setProgress(0);
+                binding.sbPrecioMin.setProgress(0);
+                binding.sbPrecioMax.setProgress(0);
+
+            }
+        });
+
 
         return binding.getRoot();
     }

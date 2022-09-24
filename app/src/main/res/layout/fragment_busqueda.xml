@@ -56,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:max="6"
+            android:min="0"
             android:progress="1" />
     </LinearLayout>
 
@@ -79,14 +80,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:max="6"
-            android:progress="1" />
+            android:max="300000"
+            android:progress="0" />
 
         <TextView
-            android:id="@+id/tv_precioMinimo"
+            android:id="@+id/tv_valorPrecioMin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$ xxxx"
+            android:text="$0"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -110,14 +111,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:max="6"
-            android:progress="1" />
+            android:max="60000"
+            android:progress="0" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_valorPrecioMax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$ xxxx"
+            android:text="$0"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -149,13 +150,14 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:orientation="horizontal"
-        android:paddingTop="5dp">
+        android:paddingTop="10dp">
 
         <Button
             android:id="@+id/button_buscar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#57DC9E"
             android:text="Buscar" />
 
         <Space
@@ -168,6 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#57DC9E"
             android:text="Resetear" />
     </LinearLayout>
 

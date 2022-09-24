@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:background="#57DC9E"
         android:elevation="4dp"
+        android:keyboardNavigationCluster="false"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:menu="@menu/menu_toolbar"
