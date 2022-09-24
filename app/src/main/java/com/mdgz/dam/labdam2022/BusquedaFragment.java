@@ -3,6 +3,8 @@ package com.mdgz.dam.labdam2022;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -71,11 +73,15 @@ public class BusquedaFragment extends Fragment {
         binding = FragmentBusquedaBinding.inflate(inflater, container, false);
 
         Button b = binding.buttonBuscar;
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e("app", "onClick: ");
-                NavHostFragment.findNavController(BusquedaFragment.this).navigate(R.id.action_busquedaFragment_to_resultadoBusquedaFragment);
+              //  NavHostFragment.findNavController(BusquedaFragment.this).navigate(R.id.action_busquedaFragment_to_resultadoBusquedaFragment);
+                FragmentManager fragmentManager= getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView,new ResultadoBusquedaFragment()).commit();
+
             }
         });
 
