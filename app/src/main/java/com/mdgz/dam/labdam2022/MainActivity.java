@@ -15,11 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
 
-        BusquedaFragment f_busqueda = new BusquedaFragment();
-        FragmentManager frg_mng = getSupportFragmentManager();
-        frg_mng.beginTransaction().add(R.id.fragmentContainerView, f_busqueda).addToBackStack(null).commit();
-    }
+     }
 }
