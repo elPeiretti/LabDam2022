@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingLeft="5dp"
     android:paddingTop="5dp"
@@ -121,6 +122,16 @@
             android:text="$0"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <!--Range Slider para los precios-->
+    <com.google.android.material.slider.RangeSlider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:labelBehavior="withinBounds"
+        android:valueFrom="0"
+        android:valueTo="300000"
+        app:values="@array/initial_range_values"/>
+        <!--Este array tiene los valores iniciales con los que arranca-->
 
     <LinearLayout
         android:layout_width="match_parent"
