@@ -1,12 +1,25 @@
 package com.mdgz.dam.labdam2022;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.mdgz.dam.labdam2022.databinding.ActivityAlojamientoRecyclerBinding;
+import com.mdgz.dam.labdam2022.databinding.FilaAlojamientoBinding;
+import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
+import com.mdgz.dam.labdam2022.model.Alojamiento;
+import com.mdgz.dam.labdam2022.model.AlojamientoDao;
+import com.mdgz.dam.labdam2022.model.Departamento;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +27,18 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ResultadoBusquedaFragment extends Fragment {
+
+    AlojamientoDao alojamiento = new AlojamientoDao();
+
+    private RecyclerView recyclerView ;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private Context ctx = this.getContext();
+    private ActivityAlojamientoRecyclerBinding binding;
+
+    private List<Alojamiento> lista = new ArrayList();
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,7 +85,21 @@ public class ResultadoBusquedaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        lista.add(new Departamento(1, "Dpto1", "El primer dpto", 2, 300000.0));
+        lista.add(new Departamento(2, "Dpto2", "El segundo dpto", 3, 300000.0));
+        lista.add(new Departamento(3, "Dpto3", "El tercer dpto", 5, 300000.0));
+
+
+
+        binding = ActivityAlojamientoRecyclerBinding.inflate(inflater, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_resultado_busqueda, container, false);
+        recyclerView = binding.recylerAlojamiento;
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(ctx);
+        recyclerView.setLayoutManager(layoutManager);
+        mAdapter = new AlojamientoRecyclerAdapter(lista, ctx);
+        recyclerView.setAdapter(mAdapter);
+        return binding.getRoot();
     }
 }

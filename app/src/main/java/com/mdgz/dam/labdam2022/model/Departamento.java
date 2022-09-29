@@ -22,6 +22,9 @@ public class Departamento extends Alojamiento{
         this.cantidadHabitaciones = cantidadHabitaciones;
         this.ubicacion = ubicacion;
     }
+    public Departamento(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase) {
+        super(id, titulo, descripcion, capacidad, precioBase);
+    }
 
     public Boolean getTieneWifi() {
         return tieneWifi;

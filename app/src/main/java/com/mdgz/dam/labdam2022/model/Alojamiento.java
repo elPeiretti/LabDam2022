@@ -24,4 +24,7 @@ public abstract class Alojamiento {
         this.capacidad = capacidad;
         this.precioBase = precioBase;
     }
+    public String getTitulo(){
+        return titulo;
+    }
 }
