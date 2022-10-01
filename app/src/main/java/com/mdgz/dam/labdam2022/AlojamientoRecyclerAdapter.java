@@ -1,6 +1,7 @@
 package com.mdgz.dam.labdam2022;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mdgz.dam.labdam2022.model.Alojamiento;
@@ -36,10 +38,8 @@ public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<Alojamiento
 
     @Override
     public void onBindViewHolder(@NonNull AlojamientoViewHolder holder, int position) {
-       // holder.favorito.setTag(position);
-        holder.nombreAlojamiento.setText(alojamientoDataSet.get(position).getTitulo());
-      //  holder.imagen.setTag(position);
-
+       holder.nombreAlojamiento.setText(alojamientoDataSet.get(position).getTitulo());
+       holder.imagen.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(),alojamientoDataSet.get(position).getFoto(),null));
     }
 
     @Override

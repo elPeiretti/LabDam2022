@@ -1,5 +1,7 @@
 package com.mdgz.dam.labdam2022.model;
 
+import android.graphics.drawable.Drawable;
+
 public abstract class Alojamiento {
 
     protected Integer id;
@@ -7,6 +9,7 @@ public abstract class Alojamiento {
     protected String descripcion;
     protected Integer capacidad;
     protected Double precioBase;
+    protected int foto;
 
     public abstract Ubicacion getUbicacion();
     public Double costoDia(){
@@ -17,14 +20,19 @@ public abstract class Alojamiento {
         super();
     }
 
-    public Alojamiento(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase) {
+    public Alojamiento(Integer id, String titulo, String descripcion, Integer capacidad,
+                       Double precioBase, int foto) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.capacidad = capacidad;
         this.precioBase = precioBase;
+        this.foto = foto;
     }
     public String getTitulo(){
         return titulo;
+    }
+    public int getFoto(){
+        return foto;
     }
 }
