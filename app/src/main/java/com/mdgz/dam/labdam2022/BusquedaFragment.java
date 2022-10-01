@@ -17,6 +17,9 @@ import android.widget.SeekBar;
 
 import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link BusquedaFragment#newInstance} factory method to
@@ -78,9 +81,9 @@ public class BusquedaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.e("app", "onClick: ");
-              //  NavHostFragment.findNavController(BusquedaFragment.this).navigate(R.id.action_busquedaFragment_to_resultadoBusquedaFragment);
-                FragmentManager fragmentManager= getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView,new ResultadoBusquedaFragment()).commit();
+                NavHostFragment.findNavController(BusquedaFragment.this).navigate(R.id.action_busquedaFragment_to_resultadoBusquedaFragment);
+                //FragmentManager fragmentManager= getActivity().getSupportFragmentManager();
+                //fragmentManager.beginTransaction().replace(R.id.fragmentContainerView,new ResultadoBusquedaFragment()).commit();
 
             }
         });
@@ -102,27 +105,6 @@ public class BusquedaFragment extends Fragment {
             }
         });
 
-        //SeekBars
-        binding.sbCapacidad.setProgress(0);
-
-        binding.sbPrecioMin.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                binding.tvValorPrecioMin.setText("$"+binding.sbPrecioMin.getProgress());
-                binding.sbPrecioMax.setMin(binding.sbPrecioMin.getProgress());
-            }
-            @Override public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override public void onStopTrackingTouch(SeekBar seekBar) { }
-        });
-
-        binding.sbPrecioMax.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                binding.tvValorPrecioMax.setText("$"+binding.sbPrecioMax.getProgress());
-            }
-            @Override public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override public void onStopTrackingTouch(SeekBar seekBar) { }
-        });
 
         //Resetear
         binding.buttonResetear.setOnClickListener(new View.OnClickListener() {
@@ -133,9 +115,7 @@ public class BusquedaFragment extends Fragment {
                 binding.cbWifi.setEnabled(false);
                 binding.cbWifi.setChecked(false);
                 binding.sbCapacidad.setProgress(0);
-                binding.sbPrecioMin.setProgress(0);
-                binding.sbPrecioMax.setProgress(0);
-
+                binding.sliderPrecios.setValues(0f,300000f);
             }
         });
 
