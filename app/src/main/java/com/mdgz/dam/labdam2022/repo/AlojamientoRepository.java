@@ -16,11 +16,16 @@ public class AlojamientoRepository {
     private static final Ubicacion ubicacion2 = new Ubicacion(-42.25,-38.2,"Lopez y Planes","2007",CiudadRepository._CIUDADES.get(1));
 
     public static final List<Alojamiento> _ALOJAMIENTOS = List.of(
-        new Departamento(1, "Dpto1", "El primer dpto",2, 120000.0,true, 300d,1, ubicacion1, R.drawable.depto1),
-        new Departamento(2, "Dpto2", "El segundo dpto",1, 25000.0,false, 100d,1, ubicacion1,R.drawable.depto2),
-        new Departamento(3, "Dpto3", "El tercer dpto",10, 290000.0,true, 600d,5, ubicacion2,R.drawable.depto3),
-        new Habitacion(1,"habitacion1","una habitacion",1,3000d,1,0,false, new Hotel(1,"Hotel 1",3,ubicacion2),R.drawable.habitacion1),
-        new Habitacion(2,"habitacion2","otra habitacion",3,12500d,1,1,false, new Hotel(1,"Hotel 1",3,ubicacion2),R.drawable.habitacion2)
+      //  new Departamento(1, "Dpto1", "El primer dpto",2, 120000.0,true, 300d,1, ubicacion1, R.drawable.depto1),
+            new Departamento(1, "Dpto1", "El primer dpto",2, 120000.0,true, 300d,1, ubicacion1, "https://imgar.zonapropcdn.com/avisos/1/00/47/80/48/58/720x532/1765004636.jpg"),
+       // new Departamento(2, "Dpto2", "El segundo dpto",1, 25000.0,false, 100d,1, ubicacion1,R.drawable.depto2),
+            new Departamento(2, "Dpto2", "El segundo dpto",1, 25000.0,false, 100d,1, ubicacion1,"https://cf.bstatic.com/xdata/images/hotel/max1024x768/242172610.jpg?k=7a80e01d5d1f41c65c05f3b36705dccdb97d26dc47417d5b5440ea3217925001&o=&hp=1"),
+        // new Departamento(3, "Dpto3", "El tercer dpto",10, 290000.0,true, 600d,5, ubicacion2,R.drawable.depto3),
+            new Departamento(3, "Dpto3", "El tercer dpto",10, 290000.0,true, 600d,5, ubicacion2,"https://cf.bstatic.com/xdata/images/hotel/270x200/283211646.jpg?k=b5f5623d636426ad7579429591fad7fab0d174bb428d4b409ff2606bc3c7c5f3&o="),
+       // new Habitacion(1,"habitacion1","una habitacion",1,3000d,1,0,false, new Hotel(1,"Hotel 1",3,ubicacion2),R.drawable.habitacion1),
+            new Habitacion(1,"habitacion1","una habitacion",1,3000d,1,0,false, new Hotel(1,"Hotel 1",3,ubicacion2),"https://media-cdn.tripadvisor.com/media/photo-s/0f/03/33/f1/habitacion-individual.jpg"),
+      //  new Habitacion(2,"habitacion2","otra habitacion",3,12500d,1,1,false, new Hotel(1,"Hotel 1",3,ubicacion2),R.drawable.habitacion2)
+            new Habitacion(2,"habitacion2","otra habitacion",3,12500d,1,1,false, new Hotel(1,"Hotel 1",3,ubicacion2),"https://media-cdn.tripadvisor.com/media/photo-s/0f/52/9e/83/habitacion-estudio-cama.jpg")
     );
 
     public List<Alojamiento> listaAlojamientos(){

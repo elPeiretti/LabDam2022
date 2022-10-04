@@ -15,7 +15,9 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.mdgz.dam.labdam2022.model.Alojamiento;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,7 +41,9 @@ public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<Alojamiento
     @Override
     public void onBindViewHolder(@NonNull AlojamientoViewHolder holder, int position) {
        holder.nombreAlojamiento.setText(alojamientoDataSet.get(position).getTitulo());
-       holder.imagen.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(),alojamientoDataSet.get(position).getFoto(),null));
+       //holder.imagen.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(),alojamientoDataSet.get(position).getFoto(),null));
+       // Glide.with(this.context).load(alojamientoDataSet.get(position).getFoto()).into(holder.imagen);
+        Picasso.get().load(alojamientoDataSet.get(position).getFoto()).into(holder.imagen);
     }
 
     @Override

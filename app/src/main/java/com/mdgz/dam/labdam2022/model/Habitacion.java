@@ -13,7 +13,7 @@ public class Habitacion  extends Alojamiento {
         super();
     }
 
-    public Habitacion(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, int camasIndividuales, int camasMatrimoniales, Boolean tieneEstacionamiento, Hotel hotel, int foto) {
+    public Habitacion(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, int camasIndividuales, int camasMatrimoniales, Boolean tieneEstacionamiento, Hotel hotel, String foto) {
         super(id, titulo, descripcion, capacidad, precioBase,foto);
         this.camasIndividuales = camasIndividuales;
         this.camasMatrimoniales = camasMatrimoniales;
