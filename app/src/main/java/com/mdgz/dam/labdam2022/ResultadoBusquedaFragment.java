@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -77,6 +78,14 @@ public class ResultadoBusquedaFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = FragmentResultadoBusquedaBinding.inflate(inflater, container, false);
+
+        binding.buttonNuevaBusqueda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ResultadoBusquedaFragment.this).navigate(R.id.action_resultadoBusquedaFragment_to_busquedaFragment);
+            }
+        });
+
         // Inflate the layout for this fragment
         recyclerView = binding.recylerAlojamiento;
         recyclerView.setHasFixedSize(true);
