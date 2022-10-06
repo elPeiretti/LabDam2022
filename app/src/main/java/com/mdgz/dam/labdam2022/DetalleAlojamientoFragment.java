@@ -8,6 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
+import com.mdgz.dam.labdam2022.databinding.FragmentDetalleAlojamientoBinding;
+import com.mdgz.dam.labdam2022.databinding.FragmentResultadoBusquedaBinding;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link DetalleAlojamientoFragment#newInstance} factory method to
@@ -19,6 +23,7 @@ public class DetalleAlojamientoFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private FragmentDetalleAlojamientoBinding binding;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -58,7 +63,9 @@ public class DetalleAlojamientoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalle_alojamiento, container, false);
+        binding = FragmentDetalleAlojamientoBinding.inflate(inflater, container, false);
+        Bundle data = getArguments();
+        binding.tvDetalle.setText(data.getString("descripcion"));
+        return binding.getRoot();
     }
 }

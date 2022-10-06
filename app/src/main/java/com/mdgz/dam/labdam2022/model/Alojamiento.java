@@ -1,6 +1,8 @@
 package com.mdgz.dam.labdam2022.model;
 
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 public abstract class Alojamiento {
 
@@ -35,4 +37,10 @@ public abstract class Alojamiento {
     public String getFoto(){
         return foto;
     }
+
+    public String getDescripcion() { return descripcion;}
+
+    public int getCapacidad() { return capacidad;}
+
+    public double getPrecioBase() { return precioBase;}
 }
