@@ -61,6 +61,6 @@ public abstract class Alojamiento implements Parcelable{
     }
 
     public String getCaracteristicas(){
-        return descripcion+".\nCapacidad: "+capacidad+" personas.\nPrecio base: $"+precioBase.toString()+".\n";
+        return descripcion+".\n<b>Capacidad</b>: "+capacidad+" personas.\nPrecio base: $"+precioBase.toString()+".\n";
     }
 }

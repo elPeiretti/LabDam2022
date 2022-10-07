@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +13,7 @@
     android:orientation="vertical"
     tools:context=".DetalleAlojamientoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blgank fragment layout -->
     <TextView
         android:id="@+id/tv_detalle"
         android:layout_width="match_parent"
@@ -25,6 +31,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
+            android:textStyle="bold"
             android:text="Nombre del alojamiento" />
 
         <ImageButton
@@ -43,11 +50,26 @@
 
         <ImageView
             android:id="@+id/iv_ImagenAlojamientoDetalle"
-            android:layout_width="232dp"
+            android:layout_width="match_parent"
             android:layout_height="232dp"
-            android:visibility="visible"
             android:layout_gravity="left"
-            android:src="@drawable/l" />
+            android:src="@drawable/l"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_caracteristicasTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:paddingTop="2dp"
+            android:textSize="16dp"
+            android:text="Características" />
 
         <TextView
             android:id="@+id/tv_caracteristicas"
@@ -66,7 +88,11 @@
             android:id="@+id/tv_fechaInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_weight="0.25"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:textSize="14dp"
             android:text="Desde:" />
 
         <EditText
@@ -98,6 +124,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
+            android:layout_gravity="center_vertical"
+            android:textSize="14dp"
+            android:textStyle="bold"
             android:text="Hasta:" />
 
         <EditText
@@ -130,6 +159,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="14dp"
+            android:textStyle="bold"
             android:text="Cantidad de personas:" />
 
         <SeekBar
@@ -144,6 +175,8 @@
             android:id="@+id/tv_precio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textStyle="bold"
             android:text="Precio: " />
 
         <Button
@@ -155,3 +188,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>
