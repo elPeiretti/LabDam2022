@@ -2,6 +2,7 @@ package com.mdgz.dam.labdam2022;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.text.Html;
@@ -27,11 +28,10 @@ public class DetalleAlojamientoFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private FragmentDetalleAlojamientoBinding binding;
-
+    private DetalleAlojamientoFragment ctx;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     public DetalleAlojamientoFragment() {
         // Required empty public constructor
     }
@@ -61,6 +61,7 @@ public class DetalleAlojamientoFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        ctx = this;
     }
 
     @Override
@@ -72,6 +73,21 @@ public class DetalleAlojamientoFragment extends Fragment {
         binding.tvTitulo.setText(aloj.getTitulo());
         binding.tvCaracteristicas.setText(aloj.getCaracteristicas());
         Picasso.get().load(aloj.getFoto()).into(binding.ivImagenAlojamientoDetalle);
+
+        binding.btnReservar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ctx.getContext());
+
+                builder.setTitle("Reserva realizada con éxito");
+                builder.setMessage("Su reserva en <nombre alojamiento> por <dias> días para <cantidad> personas fue registrada correctamente. ");
+                builder.setPositiveButton("Continuar",null);
+                builder.create().show();
+            }
+        });
+
         return binding.getRoot();
     }
+
+
 }

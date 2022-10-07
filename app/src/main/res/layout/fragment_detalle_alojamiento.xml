@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".DetalleAlojamientoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blgank fragment layout -->
     <TextView
         android:id="@+id/tv_detalle"
         android:layout_width="match_parent"
