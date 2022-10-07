@@ -52,6 +52,11 @@ public class Hotel implements Parcelable {
         }
     };
 
+    @Override
+    public String toString(){
+        return "Hotel "+nombre+", "+ubicacion.toString();
+    }
+
     public Integer getId() {
         return id;
     }

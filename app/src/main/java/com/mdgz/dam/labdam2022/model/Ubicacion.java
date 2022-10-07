@@ -10,9 +10,7 @@ public class Ubicacion implements Parcelable {
     private String numero;
     private Ciudad ciudad;
 
-    public Ubicacion(){
-
-    }
+    public Ubicacion(){}
 
     public Ubicacion(double lat, double lng, String calle, String numero, Ciudad ciudad) {
         this.lat = lat;
@@ -55,6 +53,11 @@ public class Ubicacion implements Parcelable {
             return new Ubicacion[size];
         }
     };
+
+    @Override
+    public String toString(){
+        return calle+" "+numero+", "+ciudad.toString();
+    }
 
     public double getLat() {
         return lat;

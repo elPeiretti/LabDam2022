@@ -34,6 +34,11 @@ public class Ciudad implements Parcelable {
         }
     };
 
+    @Override
+    public String toString(){
+        return nombre;
+    }
+
     public Integer getId() {
         return id;
     }

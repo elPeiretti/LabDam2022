@@ -95,4 +95,11 @@ public class Departamento extends Alojamiento{
         parcel.writeInt(cantidadHabitaciones);
         parcel.writeParcelable(ubicacion,i);
     }
+
+    @Override
+    public String getCaracteristicas(){
+        return super.getCaracteristicas()+" Tipo: Departamento. WiFi: "+(tieneWifi?"Si":"No")+
+                ". Cantidad de habitaciones: "+cantidadHabitaciones.toString()+". Costo de limpieza: "+costoLimpieza.toString()+". "+
+                "Ubicacion: "+ubicacion.toString()+".";
+    }
 }

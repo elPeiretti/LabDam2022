@@ -65,8 +65,11 @@ public class DetalleAlojamientoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDetalleAlojamientoBinding.inflate(inflater, container, false);
+
         Alojamiento aloj = getArguments().getParcelable("alojamiento");
-        binding.tvDetalle.setText(aloj.getTitulo());
+        binding.tvTitulo.setText(aloj.getTitulo());
+        binding.tvCaracteristicas.setText(aloj.getCaracteristicas());
+
         return binding.getRoot();
     }
 }

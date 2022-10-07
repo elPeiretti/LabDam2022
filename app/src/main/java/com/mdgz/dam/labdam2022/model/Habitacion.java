@@ -102,4 +102,11 @@ public class Habitacion  extends Alojamiento {
         parcel.writeParcelable(hotel,flags);
     }
 
+    @Override
+    public String getCaracteristicas(){
+        return super.getCaracteristicas()+" Tipo: Habitacion"+". Cantidad de camas individuales: "+String.valueOf(camasIndividuales)+
+                ". Cantidad de camas matrimoniales: "+String.valueOf(camasMatrimoniales)+". Tiene estacionamiento: "+(tieneEstacionamiento?"Si":"No")+
+                ". Ubicacion: "+hotel.toString()+".";
+    }
+
 }
