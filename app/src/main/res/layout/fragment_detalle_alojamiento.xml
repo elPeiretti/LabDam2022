@@ -25,6 +25,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
+            android:textStyle="bold"
             android:text="Nombre del alojamiento" />
 
         <ImageButton
@@ -43,11 +44,26 @@
 
         <ImageView
             android:id="@+id/iv_ImagenAlojamientoDetalle"
-            android:layout_width="232dp"
+            android:layout_width="match_parent"
             android:layout_height="232dp"
-            android:visibility="visible"
             android:layout_gravity="left"
-            android:src="@drawable/l" />
+            android:src="@drawable/l"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_caracteristicasTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:paddingTop="2dp"
+            android:textSize="16dp"
+            android:text="Características" />
 
         <TextView
             android:id="@+id/tv_caracteristicas"
@@ -68,6 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="14dp"
             android:text="Desde:" />
 
         <ImageButton
@@ -83,6 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
+            android:textSize="14dp"
+            android:textStyle="bold"
             android:text="Hasta:" />
 
         <ImageButton
@@ -103,6 +123,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="14dp"
+            android:textStyle="bold"
             android:text="Cantidad de personas:" />
 
         <SeekBar
@@ -117,6 +139,8 @@
             android:id="@+id/tv_precio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textStyle="bold"
             android:text="Precio: " />
 
         <Button

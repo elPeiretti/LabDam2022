@@ -3,6 +3,7 @@ package com.mdgz.dam.labdam2022.model;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.Html;
 
 public class Habitacion  extends Alojamiento {
 
@@ -104,9 +105,9 @@ public class Habitacion  extends Alojamiento {
 
     @Override
     public String getCaracteristicas(){
-        return super.getCaracteristicas()+" Tipo: Habitacion"+". Cantidad de camas individuales: "+String.valueOf(camasIndividuales)+
-                ". Cantidad de camas matrimoniales: "+String.valueOf(camasMatrimoniales)+". Tiene estacionamiento: "+(tieneEstacionamiento?"Si":"No")+
-                ". Ubicacion: "+hotel.toString()+".";
+       return super.getCaracteristicas()+"Tipo: Habitacion"+".\nCantidad de camas individuales: "+String.valueOf(camasIndividuales)+
+                ".\nCantidad de camas matrimoniales: "+String.valueOf(camasMatrimoniales)+".\nTiene estacionamiento: "+(tieneEstacionamiento?"Si":"No")+
+                ".\nUbicacion: "+hotel.toString()+".\n";
     }
 
 }

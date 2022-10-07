@@ -98,8 +98,8 @@ public class Departamento extends Alojamiento{
 
     @Override
     public String getCaracteristicas(){
-        return super.getCaracteristicas()+" Tipo: Departamento. WiFi: "+(tieneWifi?"Si":"No")+
-                ". Cantidad de habitaciones: "+cantidadHabitaciones.toString()+". Costo de limpieza: "+costoLimpieza.toString()+". "+
-                "Ubicacion: "+ubicacion.toString()+".";
+        return super.getCaracteristicas()+"Tipo: Departamento.\nWiFi: "+(tieneWifi?"Si":"No")+
+                ".\nCantidad de habitaciones: "+cantidadHabitaciones.toString()+".\nCosto de limpieza: "+costoLimpieza.toString()+".\n"+
+                "Ubicacion: "+ubicacion.toString()+".\n";
     }
 }

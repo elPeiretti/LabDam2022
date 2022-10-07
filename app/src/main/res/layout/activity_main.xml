@@ -19,7 +19,7 @@
         app:menu="@menu/menu_toolbar"
         app:title="VAGOTRI"
         app:titleCentered="true"
-        app:titleTextColor="#575757"
+        app:titleTextColor="#FFFFFF"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="2dp" />
 

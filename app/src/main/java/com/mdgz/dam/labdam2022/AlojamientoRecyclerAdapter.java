@@ -46,13 +46,12 @@ public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<Alojamiento
     public void onBindViewHolder(@NonNull AlojamientoViewHolder holder, int position) {
        holder.nombreAlojamiento.setText(alojamientoDataSet.get(position).getTitulo());
         //holder.imagen.setImageDrawable(ResourcesCompat.getDrawable(context.getResources(),alojamientoDataSet.get(position).getFoto(),null));
-        // Glide.with(this.context).load(alojamientoDataSet.get(position).getFoto()).into(holder.imagen);
+        //Glide.with(this.context).load(alojamientoDataSet.get(position).getFoto()).into(holder.imagen);
         Picasso.get().load(alojamientoDataSet.get(position).getFoto()).into(holder.imagen);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Bundle data = new Bundle();
                 Alojamiento opt = alojamientoDataSet.get(holder.getLayoutPosition());
                 data.putParcelable("alojamiento",opt);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
 import com.mdgz.dam.labdam2022.databinding.FragmentDetalleAlojamientoBinding;
 import com.mdgz.dam.labdam2022.databinding.FragmentResultadoBusquedaBinding;
 import com.mdgz.dam.labdam2022.model.Alojamiento;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,7 +71,7 @@ public class DetalleAlojamientoFragment extends Fragment {
         Alojamiento aloj = getArguments().getParcelable("alojamiento");
         binding.tvTitulo.setText(aloj.getTitulo());
         binding.tvCaracteristicas.setText(aloj.getCaracteristicas());
-
+        Picasso.get().load(aloj.getFoto()).into(binding.ivImagenAlojamientoDetalle);
         return binding.getRoot();
     }
 }
