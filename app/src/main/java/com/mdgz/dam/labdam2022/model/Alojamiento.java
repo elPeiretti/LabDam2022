@@ -4,7 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public abstract class Alojamiento {
+public abstract class Alojamiento implements Parcelable{
 
     protected Integer id;
     protected String titulo;
@@ -12,6 +12,14 @@ public abstract class Alojamiento {
     protected Integer capacidad;
     protected Double precioBase;
     protected String foto;
+
+    public Alojamiento(Parcel in) {
+        titulo = in.readString();
+        descripcion = in.readString();
+        capacidad = in.readInt();
+        precioBase = in.readDouble();
+        foto = in.readString();
+    }
 
     public abstract Ubicacion getUbicacion();
     public Double costoDia(){
@@ -43,4 +51,12 @@ public abstract class Alojamiento {
     public int getCapacidad() { return capacidad;}
 
     public double getPrecioBase() { return precioBase;}
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i){
+        parcel.writeString(titulo);
+        parcel.writeInt(capacidad);
+        parcel.writeDouble(precioBase);
+        parcel.writeString(foto);
+    }
 }

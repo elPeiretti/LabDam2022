@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
 import com.mdgz.dam.labdam2022.databinding.FragmentDetalleAlojamientoBinding;
 import com.mdgz.dam.labdam2022.databinding.FragmentResultadoBusquedaBinding;
+import com.mdgz.dam.labdam2022.model.Alojamiento;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,8 +65,8 @@ public class DetalleAlojamientoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDetalleAlojamientoBinding.inflate(inflater, container, false);
-        Bundle data = getArguments();
-        binding.tvDetalle.setText(data.getString("descripcion"));
+        Alojamiento aloj = getArguments().getParcelable("alojamiento");
+        binding.tvDetalle.setText(aloj.getTitulo());
         return binding.getRoot();
     }
 }

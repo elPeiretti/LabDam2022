@@ -55,13 +55,7 @@ public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<Alojamiento
 
                 Bundle data = new Bundle();
                 Alojamiento opt = alojamientoDataSet.get(holder.getLayoutPosition());
-                // cambiar a parcelable en el futuro TODO
-                data.putString("titulo",opt.getTitulo());
-                data.putString("descripcion",opt.getDescripcion());
-                data.putInt("capacidad",opt.getCapacidad());
-                data.putDouble("precio base",opt.getPrecioBase());
-                data.putString("foto",opt.getFoto());
-
+                data.putParcelable("alojamiento",opt);
                 Navigation.findNavController(view).navigate(R.id.action_resultadoBusquedaFragment_to_detalleAlojamientoFragment,data);
             }
         });
