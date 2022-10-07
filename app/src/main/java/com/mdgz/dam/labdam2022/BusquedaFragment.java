@@ -100,7 +100,6 @@ public class BusquedaFragment extends Fragment {
             }
         });
 
-
         //Resetear
         binding.buttonResetear.setOnClickListener(new View.OnClickListener() {
             @Override

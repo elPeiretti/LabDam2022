@@ -74,11 +74,12 @@ public class DetalleAlojamientoFragment extends Fragment {
         binding.tvCaracteristicas.setText(aloj.getCaracteristicas());
         Picasso.get().load(aloj.getFoto()).into(binding.ivImagenAlojamientoDetalle);
 
+
+
         binding.btnReservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ctx.getContext());
-
                 builder.setTitle("Reserva realizada con éxito");
                 builder.setMessage("Su reserva en <nombre alojamiento> por <dias> días para <cantidad> personas fue registrada correctamente. ");
                 builder.setPositiveButton("Continuar",null);
