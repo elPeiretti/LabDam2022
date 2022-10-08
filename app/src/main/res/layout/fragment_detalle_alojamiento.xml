@@ -88,7 +88,6 @@
             android:id="@+id/tv_fechaInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_weight="0.25"
             android:layout_gravity="center_vertical"
             android:textStyle="bold"
@@ -184,6 +183,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#57DC9E"
+            android:enabled="false"
             android:text="Reservar" />
     </LinearLayout>
 

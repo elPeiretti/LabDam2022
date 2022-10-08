@@ -11,7 +11,9 @@ import androidx.appcompat.app.AlertDialog;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +91,9 @@ public class DetalleAlojamientoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDetalleAlojamientoBinding.inflate(inflater, container, false);
-
+        if(savedInstanceState!=null){
+            binding.btnReservar.setEnabled(savedInstanceState.getBoolean("btnReservar"));
+        }
         Bundle data = getArguments();
         binding.tvDetalle.setText(data.getString("descripcion"));
 
@@ -97,8 +101,6 @@ public class DetalleAlojamientoFragment extends Fragment {
         binding.tvTitulo.setText(aloj.getTitulo());
         binding.tvCaracteristicas.setText(aloj.getCaracteristicas());
         Picasso.get().load(aloj.getFoto()).into(binding.ivImagenAlojamientoDetalle);
-
-
 
         binding.btnReservar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,38 +111,38 @@ public class DetalleAlojamientoFragment extends Fragment {
                 builder.setPositiveButton("Continuar",null);
                 builder.create().show();
             }
-
         });
 
         editFechaInicio = binding.fechInicio;
         pickInicio= binding.idBtnPickDate;
+        pickFin= binding.idBtnPickDate2;
 
+        Calendar calendario_inicio = Calendar.getInstance();
         pickInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DATE);
+                int year = calendario_inicio.get(Calendar.YEAR);
+                int month = calendario_inicio.get(Calendar.MONTH);
+                int day = calendario_inicio.get(Calendar.DATE);
+                //calendario_inicio.add(Calendar.DATE, 1);
 
                     DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                             new DatePickerDialog.OnDateSetListener() {
                                 @Override
                                 public void onDateSet(DatePicker view, int year,
                                                       int monthOfYear, int dayOfMonth) {
+                                    calendario_inicio.set(year, monthOfYear, dayOfMonth);
                                     editFechaInicio.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
                                 }
                             },
-
                             year, month, day);
-
-                    datePickerDialog.show();
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialog.show();
                 }
-
         });
-        editFechaFin = binding.fechFin;
-        pickFin= binding.idBtnPickDate2;
 
+        editFechaFin = binding.fechFin;
         pickFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,6 +150,7 @@ public class DetalleAlojamientoFragment extends Fragment {
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DATE);
+                c.setTimeInMillis(calendario_inicio.getTimeInMillis()+(1000 * 60 * 60 * 24));
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                         new DatePickerDialog.OnDateSetListener() {
@@ -157,14 +160,57 @@ public class DetalleAlojamientoFragment extends Fragment {
                                 editFechaFin.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                             }
                         },
-
                         year, month, day);
-
+                datePickerDialog.getDatePicker().setMinDate(calendario_inicio.getTimeInMillis()+(1000 * 60 * 60 * 24));
                 datePickerDialog.show();
             }
-        });return binding.getRoot();
+        });
+
+        editFechaInicio.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                editFechaFin.setText(null);
+                binding.btnReservar.setEnabled(false);
+            }
+        });
+
+        editFechaFin.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(editFechaFin.getText().length()!=0 && editFechaInicio.getText().length()!=0){
+                    binding.btnReservar.setEnabled(true);
+                }
+                else binding.btnReservar.setEnabled(false);
+            }
+        });
+
+        return binding.getRoot();
 
 }
-
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("btnReservar",binding.btnReservar.isEnabled());
+    }
 
 }
