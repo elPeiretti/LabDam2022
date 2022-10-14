@@ -3,10 +3,22 @@ package com.mdgz.dam.labdam2022;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.SeekBar;
+
+import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +31,7 @@ public class BusquedaFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private FragmentBusquedaBinding binding;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -58,7 +71,49 @@ public class BusquedaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_busqueda, container, false);
+
+        binding = FragmentBusquedaBinding.inflate(inflater, container, false);
+
+        Button b = binding.buttonBuscar;
+
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(BusquedaFragment.this).navigate(R.id.action_busquedaFragment_to_resultadoBusquedaFragment);
+            }
+        });
+
+        //CheckBox WiFi
+        CheckBox cbWifi = binding.cbWifi;
+        cbWifi.setEnabled(false);
+        CheckBox cbDepartamentos = binding.cbDepartamentos;
+        cbDepartamentos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cbDepartamentos.isChecked()){
+                    cbWifi.setEnabled(true);
+                }
+                else{
+                    cbWifi.setEnabled(false);
+                    cbWifi.setChecked(false);
+                }
+            }
+        });
+
+        //Resetear
+        binding.buttonResetear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.cbHoteles.setChecked(false);
+                binding.cbDepartamentos.setChecked(false);
+                binding.cbWifi.setEnabled(false);
+                binding.cbWifi.setChecked(false);
+                binding.sbCapacidad.setProgress(0);
+                binding.sliderPrecios.setValues(0f,300000f);
+            }
+        });
+
+
+        return binding.getRoot();
     }
 }

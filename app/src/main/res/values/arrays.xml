@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="array_ciudades">
+        <item>Santa Fe</item>
+        <item>Córdoba</item>
+        <item>Buenos Aires</item>
+        <item>Rosario</item>
+        <item>Sunchales</item>
+        <item>Rafaela</item>
+        <item>Misiones</item>
+        <item>Paraná</item>
+        <item>Bariloche</item>
+    </array>
+
+    <array name="initial_range_values">
+        <item>0</item>
+        <item>300000</item>
+    </array>
+</resources>

@@ -1,6 +1,9 @@
 package com.mdgz.dam.labdam2022.model;
 
-public class Ciudad {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Ciudad implements Parcelable {
     Integer id;
     String nombre;
     String abreviatura;
@@ -11,6 +14,29 @@ public class Ciudad {
         this.id = id;
         this.nombre = nombre;
         this.abreviatura = abreviatura;
+    }
+
+    protected Ciudad(Parcel in) {
+        id = in.readInt();
+        nombre = in.readString();
+        abreviatura = in.readString();
+    }
+
+    public static final Creator<Ciudad> CREATOR = new Creator<Ciudad>() {
+        @Override
+        public Ciudad createFromParcel(Parcel in) {
+            return new Ciudad(in);
+        }
+
+        @Override
+        public Ciudad[] newArray(int size) {
+            return new Ciudad[size];
+        }
+    };
+
+    @Override
+    public String toString(){
+        return nombre;
     }
 
     public Integer getId() {
@@ -35,5 +61,17 @@ public class Ciudad {
 
     public void setAbreviatura(String abreviatura) {
         this.abreviatura = abreviatura;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeInt(id);
+        parcel.writeString(nombre);
+        parcel.writeString(abreviatura);
     }
 }
