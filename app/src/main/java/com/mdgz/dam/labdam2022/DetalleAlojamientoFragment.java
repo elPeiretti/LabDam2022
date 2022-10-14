@@ -10,10 +10,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +33,10 @@ import com.mdgz.dam.labdam2022.model.Alojamiento;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalField;
 import java.util.Calendar;
 
 /**
@@ -101,15 +108,26 @@ public class DetalleAlojamientoFragment extends Fragment {
         binding.tvTitulo.setText(aloj.getTitulo());
         binding.tvCaracteristicas.setText(aloj.getCaracteristicas());
         Picasso.get().load(aloj.getFoto()).into(binding.ivImagenAlojamientoDetalle);
+        binding.sbCantPersonas.setMax(aloj.getCapacidad());
 
         binding.btnReservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d[d]-MM-yyyy");
+                LocalDate inicio = LocalDate.parse(binding.fechInicio.getText().toString(),dtf);
+                LocalDate fin = LocalDate.parse(binding.fechFin.getText().toString(),dtf);
+
+                Integer cantDias = (fin.getDayOfYear() - inicio.getDayOfYear())+365*(fin.getYear()-inicio.getYear());
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(ctx.getContext());
                 builder.setTitle("Reserva realizada con éxito");
-                builder.setMessage("Su reserva en <nombre alojamiento> por <dias> días para <cantidad> personas fue registrada correctamente. ");
+                builder.setMessage("Su reserva en "+aloj.getTitulo()+" por "+
+                        cantDias.toString()+" días para "+binding.sbCantPersonas.getProgress()+
+                        " personas fue registrada correctamente. ");
                 builder.setPositiveButton("Continuar",null);
                 builder.create().show();
+
+                NavHostFragment.findNavController(DetalleAlojamientoFragment.this).navigate(R.id.action_detalleAlojamientoFragment_to_busquedaFragment);
             }
         });
 
@@ -124,7 +142,6 @@ public class DetalleAlojamientoFragment extends Fragment {
                 int year = calendario_inicio.get(Calendar.YEAR);
                 int month = calendario_inicio.get(Calendar.MONTH);
                 int day = calendario_inicio.get(Calendar.DATE);
-                //calendario_inicio.add(Calendar.DATE, 1);
 
                     DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                             new DatePickerDialog.OnDateSetListener() {
@@ -168,14 +185,10 @@ public class DetalleAlojamientoFragment extends Fragment {
 
         editFechaInicio.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {            }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {            }
 
             @Override
             public void afterTextChanged(Editable editable) {
@@ -186,14 +199,10 @@ public class DetalleAlojamientoFragment extends Fragment {
 
         editFechaFin.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {            }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {            }
 
             @Override
             public void afterTextChanged(Editable editable) {
