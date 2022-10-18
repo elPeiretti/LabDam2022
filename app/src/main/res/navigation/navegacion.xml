@@ -42,8 +42,20 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.mdgz.dam.labdam2022.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_vistaArchivoFragment"
+            app:destination="@id/vistaArchivoFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_settingsFragment"
         app:destination="@id/settingsFragment" />
+    <action
+        android:id="@+id/action_global_busquedaFragment"
+        app:destination="@id/busquedaFragment" />
+    <fragment
+        android:id="@+id/vistaArchivoFragment"
+        android:name="com.mdgz.dam.labdam2022.VistaArchivoFragment"
+        android:label="fragment_vista_archivo"
+        tools:layout="@layout/fragment_vista_archivo" />
 </navigation>

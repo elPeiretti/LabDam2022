@@ -40,5 +40,23 @@
             app:enabled="false"
             />
     </PreferenceCategory>
+    <PreferenceCategory
+        app:title="Notificaciones e información">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="notificaciones"
+            android:title="Activar notificaciones" />
+        <CheckBoxPreference
+            app:title="Guardar información"
+            app:defaultValue="true"
+            app:key="informacion" />
+    </PreferenceCategory>
+
+    <Preference
+        android:title="Ver logs"
+        android:key="button_log"
+        />
+
+
 
 </PreferenceScreen>

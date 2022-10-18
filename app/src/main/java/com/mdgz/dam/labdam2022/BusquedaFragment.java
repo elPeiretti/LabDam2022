@@ -1,5 +1,7 @@
 package com.mdgz.dam.labdam2022;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +19,12 @@ import android.widget.SeekBar;
 
 import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +88,8 @@ public class BusquedaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(BusquedaFragment.this).navigate(R.id.action_busquedaFragment_to_resultadoBusquedaFragment);
+                guardarBusqueda();
+
             }
         });
 
@@ -115,5 +125,37 @@ public class BusquedaFragment extends Fragment {
 
 
         return binding.getRoot();
+    }
+
+    //guardar configuración aplicación Android usando SharedPreferences
+    public void guardarBusqueda(){
+        File file = new File(getContext().getFilesDir(), "RegistroBusquedas.txt");
+        try  {
+            FileOutputStream fos = getContext().openFileOutput("RegistroBusquedas.txt", Context.MODE_APPEND|Context.MODE_PRIVATE);
+            String tipo="";
+            String wifi="";
+            if(binding.cbHoteles.isChecked()){
+                tipo = "Hotel";
+            }
+            if(binding.cbDepartamentos.isChecked()){
+                tipo = "Departamento";
+                if(binding.cbWifi.isChecked()) wifi="- Con wifi";
+            }
+            String busqueda = Timestamp.from(Instant.now()).toString() + "- " + tipo + wifi
+                    + "- Capacidad: "+ binding.sbCapacidad.getProgress()
+                    + "-Precio minimo: "+binding.sliderPrecios.getValues().get(0).toString()
+                    + "-Precio máximo: "+ binding.sliderPrecios.getValues().get(1).toString()
+                    + "-Ciudad: "+ binding.spinCiudad.getSelectedItem().toString()
+                    +"\n";
+            Log.i("bytes", String.valueOf(busqueda.getBytes().length));
+            fos.write(busqueda.getBytes());
+            fos.flush();
+            fos.close();
+            Log.i("string", busqueda);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -7,6 +7,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -34,9 +36,19 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.configuracion:
                         Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_global_settingsFragment);
                         break;
+                    case R.id.buscar:
+                        Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_global_busquedaFragment);
+                        break;
+                    case R.id.reservas:
+                       // Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_global_busquedaFragment);
+                        break;
+                    case R.id.favoritos:
+                        //  Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_global_busquedaFragment);
+                        break;
                 }
                 return true;
             }
         });
     }
+
 }
