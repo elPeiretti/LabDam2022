@@ -90,10 +90,10 @@ public class BusquedaFragment extends Fragment {
                 SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
                 if(guardarInfoEstaActivado()) {
                     guardarBusqueda();
-                    Log.i("aca guarda", " ");
+                    Log.i("aca guarda", "aca guarda");
                 }
                 else {
-                    Log.i("aca no hace nada", " ");
+                    Log.i("aca no hace nada", "aca no hace nada");
                 }
             }
         });
@@ -132,13 +132,13 @@ public class BusquedaFragment extends Fragment {
 
     public boolean guardarInfoEstaActivado(){
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        return sharedPref.getBoolean("informacion",false);
+        return sharedPref.getBoolean("informacion",true);
     }
 
     //guardar configuración aplicación Android usando SharedPreferences
     public void guardarBusqueda(){
         File file = new File(getContext().getFilesDir(), "RegistroBusquedas.txt");
-        if(!file.exists()) return;
+        //if(!file.exists()) return;
         try  {
             FileOutputStream fos = getContext().openFileOutput("RegistroBusquedas.txt", Context.MODE_APPEND|Context.MODE_PRIVATE);
             String tipo="";
