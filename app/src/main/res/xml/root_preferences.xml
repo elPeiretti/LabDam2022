@@ -55,6 +55,7 @@
     <Preference
         android:title="Ver logs"
         android:key="button_log"
+        android:enabled="true"
         />
 
 

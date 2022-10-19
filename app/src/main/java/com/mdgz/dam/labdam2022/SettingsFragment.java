@@ -9,12 +9,13 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     ListPreference medio_pago;
     CheckBoxPreference guardar_informacion;
     Preference button_log;
-
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -25,7 +26,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 medio_pago.setSummary(newValue.toString());
                 findPreference("moneda").setEnabled(newValue.toString().equals("Efectivo"));
-
                 return true;
             }
         });

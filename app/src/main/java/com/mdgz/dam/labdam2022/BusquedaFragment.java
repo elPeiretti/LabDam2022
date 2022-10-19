@@ -81,15 +81,20 @@ public class BusquedaFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = FragmentBusquedaBinding.inflate(inflater, container, false);
-
         Button b = binding.buttonBuscar;
-
+        BusquedaFragment ctx = this;
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(BusquedaFragment.this).navigate(R.id.action_busquedaFragment_to_resultadoBusquedaFragment);
-                guardarBusqueda();
-
+                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                if(guardarInfoEstaActivado()) {
+                    guardarBusqueda();
+                    Log.i("aca guarda", " ");
+                }
+                else {
+                    Log.i("aca no hace nada", " ");
+                }
             }
         });
 
@@ -122,14 +127,18 @@ public class BusquedaFragment extends Fragment {
                 binding.sliderPrecios.setValues(0f,300000f);
             }
         });
-
-
         return binding.getRoot();
+    }
+
+    public boolean guardarInfoEstaActivado(){
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        return sharedPref.getBoolean("informacion",false);
     }
 
     //guardar configuración aplicación Android usando SharedPreferences
     public void guardarBusqueda(){
         File file = new File(getContext().getFilesDir(), "RegistroBusquedas.txt");
+        if(!file.exists()) return;
         try  {
             FileOutputStream fos = getContext().openFileOutput("RegistroBusquedas.txt", Context.MODE_APPEND|Context.MODE_PRIVATE);
             String tipo="";
