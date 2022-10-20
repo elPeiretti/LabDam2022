@@ -1,0 +1,61 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        app:title="Datos personales">
+
+        <EditTextPreference
+            app:key="email"
+            app:title="Email"
+            app:useSimpleSummaryProvider="true"
+            app:singleLine="true"
+            />
+        <EditTextPreference
+            app:key="cuit"
+            app:title="CUIT"
+            android:inputType = "number"
+            app:useSimpleSummaryProvider="true"
+            app:singleLine="true"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="Pago">
+        <ListPreference
+            app:defaultValue="Efectivo"
+            app:entries="@array/medios_pago"
+            app:entryValues="@array/medios_pago"
+            app:key="medios_pago"
+            app:summary= "Efectivo"
+            app:title="Medio de pago"
+            />
+        <ListPreference
+            app:defaultValue="Pesos"
+            app:entries="@array/moneda"
+            app:entryValues="@array/moneda"
+            app:key="moneda"
+            app:summary="Pesos"
+            app:title="Moneda"
+            app:enabled="false"
+            />
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:title="Notificaciones e información">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="notificaciones"
+            android:title="Activar notificaciones" />
+        <CheckBoxPreference
+            app:title="Guardar información"
+            app:defaultValue="true"
+            app:key="informacion" />
+    </PreferenceCategory>
+
+    <Preference
+        android:title="Ver logs"
+        android:key="button_log"
+        android:dependency="informacion"
+        />
+
+</PreferenceScreen>

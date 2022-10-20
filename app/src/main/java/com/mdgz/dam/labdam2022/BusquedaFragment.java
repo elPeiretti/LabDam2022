@@ -1,7 +1,10 @@
 package com.mdgz.dam.labdam2022;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -15,8 +18,16 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 
+import com.google.android.material.slider.LabelFormatter;
+import com.google.android.material.slider.RangeSlider;
 import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,12 +85,31 @@ public class BusquedaFragment extends Fragment {
 
         binding = FragmentBusquedaBinding.inflate(inflater, container, false);
 
-        Button b = binding.buttonBuscar;
+        //formato label del rangeSlider
+        RangeSlider slider = binding.sliderPrecios;
+        slider.setLabelFormatter(new LabelFormatter() {
+            @NonNull
+            @Override
+            public String getFormattedValue(float value) {
+                Integer v = (int) value;
+                return "$ "+v.toString();
+            }
+        });
 
+        Button b = binding.buttonBuscar;
+        BusquedaFragment ctx = this;
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(BusquedaFragment.this).navigate(R.id.action_busquedaFragment_to_resultadoBusquedaFragment);
+                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                if(guardarInfoEstaActivado()) {
+                    guardarBusqueda();
+                    Log.i("aca guarda", "aca guarda");
+                }
+                else {
+                    Log.i("aca no hace nada", "aca no hace nada");
+                }
             }
         });
 
@@ -112,8 +142,44 @@ public class BusquedaFragment extends Fragment {
                 binding.sliderPrecios.setValues(0f,300000f);
             }
         });
-
-
         return binding.getRoot();
+    }
+
+    public boolean guardarInfoEstaActivado(){
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        return sharedPref.getBoolean("informacion",true);
+    }
+
+    //guardar configuración aplicación Android usando SharedPreferences
+    public void guardarBusqueda(){
+        File file = new File(getContext().getFilesDir(), "RegistroBusquedas.txt");
+        //if(!file.exists()) return;
+        try  {
+            FileOutputStream fos = getContext().openFileOutput("RegistroBusquedas.txt", Context.MODE_APPEND|Context.MODE_PRIVATE);
+            String tipo="";
+            String wifi="";
+            if(binding.cbHoteles.isChecked()){
+                tipo = "Hotel";
+            }
+            if(binding.cbDepartamentos.isChecked()){
+                tipo = "Departamento";
+                if(binding.cbWifi.isChecked()) wifi="- Con wifi";
+            }
+            String busqueda = Timestamp.from(Instant.now()).toString() + "- " + tipo + wifi
+                    + "- Capacidad: "+ binding.sbCapacidad.getProgress()
+                    + "-Precio minimo: "+binding.sliderPrecios.getValues().get(0).toString()
+                    + "-Precio máximo: "+ binding.sliderPrecios.getValues().get(1).toString()
+                    + "-Ciudad: "+ binding.spinCiudad.getSelectedItem().toString()
+                    +"\n";
+            Log.i("bytes", String.valueOf(busqueda.getBytes().length));
+            fos.write(busqueda.getBytes());
+            fos.flush();
+            fos.close();
+            Log.i("string", busqueda);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

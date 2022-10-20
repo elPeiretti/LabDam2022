@@ -77,7 +77,9 @@
         android:layout_height="wrap_content"
         app:labelBehavior="withinBounds"
         android:valueFrom="0"
-        android:valueTo="300000"
+        android:valueTo="100000"
+        android:stepSize="100"
+        app:tickVisible="false"
         app:values="@array/initial_range_values"/>
         <!--Este array tiene los valores iniciales con los que arranca-->
 
