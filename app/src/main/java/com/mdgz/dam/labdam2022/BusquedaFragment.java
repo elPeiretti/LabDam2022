@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,6 +18,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 
+import com.google.android.material.slider.LabelFormatter;
+import com.google.android.material.slider.RangeSlider;
 import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
 
 import java.io.File;
@@ -81,6 +84,18 @@ public class BusquedaFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = FragmentBusquedaBinding.inflate(inflater, container, false);
+
+        //formato label del rangeSlider
+        RangeSlider slider = binding.sliderPrecios;
+        slider.setLabelFormatter(new LabelFormatter() {
+            @NonNull
+            @Override
+            public String getFormattedValue(float value) {
+                Integer v = (int) value;
+                return "$ "+v.toString();
+            }
+        });
+
         Button b = binding.buttonBuscar;
         BusquedaFragment ctx = this;
         b.setOnClickListener(new View.OnClickListener() {
