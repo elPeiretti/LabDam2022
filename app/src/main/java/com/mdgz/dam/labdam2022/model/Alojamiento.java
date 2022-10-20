@@ -1,16 +1,30 @@
 package com.mdgz.dam.labdam2022.model;
 
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public abstract class Alojamiento implements Parcelable{
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "ID_ALOJAMIENTO")
     protected Integer id;
+
+    @ColumnInfo(name = "TITULO")
     protected String titulo;
+    @ColumnInfo(name = "DESCRIPCION")
     protected String descripcion;
+    @ColumnInfo(name = "CAPACIDAD")
     protected Integer capacidad;
+    @ColumnInfo(name = "PRECIO")
     protected Double precioBase;
+    @ColumnInfo(name = "FOTO")
     protected String foto;
 
     public Alojamiento(Parcel in) {
