@@ -1,6 +1,7 @@
 package com.mdgz.dam.labdam2022;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toolbar;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -32,9 +34,14 @@ public class MainActivity extends AppCompatActivity {
         mToolbar.setOnMenuItemClickListener(new MaterialToolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                NavController nav = Navigation.findNavController(binding.fragmentContainerView);
+
                 switch (item.getItemId()) {
                     case R.id.configuracion:
-                        Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_global_settingsFragment);
+                        nav.navigate(R.id.action_global_settingsFragment);
+                        break;
+                    case R.id.busquedaFragment:
+                        nav.navigate(R.id.action_global_busquedaFragment);
                         break;
                     case R.id.buscar:
                         Navigation.findNavController(binding.fragmentContainerView).navigate(R.id.action_global_busquedaFragment);
@@ -47,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 return true;
+            }
+        });
+
+        // agregar flechita para volver para atras
+        mToolbar.setNavigationIcon(ContextCompat.getDrawable(this, androidx.appcompat.R.drawable.abc_ic_ab_back_material));
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(binding.fragmentContainerView).navigateUp();
             }
         });
     }
