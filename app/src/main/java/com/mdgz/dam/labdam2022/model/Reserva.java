@@ -6,16 +6,14 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.Instant;
-import java.util.UUID;
 
 @Entity
 public class Reserva {
 
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = true)
     @NonNull
     @ColumnInfo(name="ID_RESERVA")
-    private UUID id;
-
+    private Integer id;
     @ColumnInfo(name="FECHA_INGRESO")
     private Instant fechaIngreso;
     @ColumnInfo(name="FECHA_EGRESO")
@@ -24,9 +22,9 @@ public class Reserva {
     private Boolean cancelada;
     @ColumnInfo(name="MONTO")
     private Double monto;
+    @ColumnInfo(name="ID_ALOJAMIENTO")
+    private Integer Alojamiento;
 
-    public Reserva(){
-        this.id=UUID.randomUUID();
-    }
+    public Reserva(){}
 
 }

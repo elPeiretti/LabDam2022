@@ -17,7 +17,7 @@
             android:name=".AlojamientoViewHolder"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ActividadesYFragmentos.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

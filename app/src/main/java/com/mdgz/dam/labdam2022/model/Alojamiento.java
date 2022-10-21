@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public abstract class Alojamiento implements Parcelable{
 
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "ID_ALOJAMIENTO")
     protected Integer id;

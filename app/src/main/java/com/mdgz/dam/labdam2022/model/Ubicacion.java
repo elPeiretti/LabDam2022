@@ -3,11 +3,33 @@ package com.mdgz.dam.labdam2022.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import java.util.UUID;
+
+@Entity (foreignKeys = @ForeignKey(entity = Ciudad.class, parentColumns = "id", childColumns = "id"))
 public class Ubicacion implements Parcelable {
+    @PrimaryKey (autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name="ID_UBICACION")
+    private Integer id;
+    @ColumnInfo(name="LAT")
     private double lat;
+    @ColumnInfo(name="LNG")
     private double lng;
+    @ColumnInfo(name="CALLE")
     private String calle;
+    @ColumnInfo(name="NUMERO")
     private String numero;
+    @ColumnInfo(name="ID_CIUDAD")
+    private Integer idCiudad;
+
+    @Ignore
     private Ciudad ciudad;
 
     public Ubicacion(){}

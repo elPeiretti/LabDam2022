@@ -5,11 +5,24 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.Html;
 
-public class Habitacion  extends Alojamiento {
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
+public class Habitacion  extends Alojamiento {
+    @PrimaryKey (autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "ID_HABITACION")
+    protected Integer id;
+    @ColumnInfo(name = "CAMAS_INDIVIDUALES")
     private int camasIndividuales;
+    @ColumnInfo(name = "CAMAS_MATRIMONIALES")
     private int camasMatrimoniales;
+    @ColumnInfo(name = "TIENE_ESTACIONAMIENTO")
     private Boolean tieneEstacionamiento;
+
     private Hotel hotel;
 
     public Habitacion() {

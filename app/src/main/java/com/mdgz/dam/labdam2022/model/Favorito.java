@@ -8,17 +8,16 @@ import java.util.UUID;
 @Entity
 public class Favorito {
 
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = true)
     @NonNull
     @ColumnInfo(name="ID_FAVORITO")
-    private UUID id;
+    private Integer id;
 
     @ColumnInfo(name="ID_ALOJAMIENTO")
-    private UUID alojamientoID;
+    private Integer alojamientoID;
     @ColumnInfo(name="ID_USUARIO")
-    private UUID usuarioID;
+    private Integer usuarioID;
 
     public Favorito(){
-        this.id=UUID.randomUUID();
     }
 }

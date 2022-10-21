@@ -5,13 +5,26 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class Departamento extends Alojamiento{
+    @PrimaryKey (autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "ID_DEPARTAMENTO")
+    protected Integer id;
 
+    @ColumnInfo(name = "TIENE_WIFI")
     private Boolean tieneWifi;
+    @ColumnInfo(name = "COSTO_LIMPIEZA")
     private Double costoLimpieza;
+    @ColumnInfo(name = "CANTIDAD_HABITACIONES")
     private Integer cantidadHabitaciones;
+
     private Ubicacion ubicacion;
 
     public static final Parcelable.Creator<Departamento> CREATOR =
@@ -26,7 +39,6 @@ public class Departamento extends Alojamiento{
                     return new Departamento[size];
                 }
             };
-
 
     protected Departamento(Parcel in){
         super(in);

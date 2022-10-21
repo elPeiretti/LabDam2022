@@ -1,25 +1,21 @@
-package com.mdgz.dam.labdam2022;
+package com.mdgz.dam.labdam2022.ActividadesYFragmentos;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.model.Alojamiento;
 import com.squareup.picasso.Picasso;
 

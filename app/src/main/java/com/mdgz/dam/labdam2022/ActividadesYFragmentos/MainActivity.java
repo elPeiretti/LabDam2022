@@ -1,4 +1,4 @@
-package com.mdgz.dam.labdam2022;
+package com.mdgz.dam.labdam2022.ActividadesYFragmentos;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Toolbar;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
