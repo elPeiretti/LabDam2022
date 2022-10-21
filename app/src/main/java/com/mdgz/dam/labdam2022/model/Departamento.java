@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -25,6 +26,7 @@ public class Departamento extends Alojamiento{
     @ColumnInfo(name = "CANTIDAD_HABITACIONES")
     private Integer cantidadHabitaciones;
 
+    @Ignore
     private Ubicacion ubicacion;
 
     public static final Parcelable.Creator<Departamento> CREATOR =

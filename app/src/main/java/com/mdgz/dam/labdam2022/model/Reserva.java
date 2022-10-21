@@ -27,4 +27,52 @@ public class Reserva {
 
     public Reserva(){}
 
+    @NonNull
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(@NonNull Integer id) {
+        this.id = id;
+    }
+
+    public Instant getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Instant fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public Instant getFechaEgreso() {
+        return fechaEgreso;
+    }
+
+    public void setFechaEgreso(Instant fechaEgreso) {
+        this.fechaEgreso = fechaEgreso;
+    }
+
+    public Boolean getCancelada() {
+        return cancelada;
+    }
+
+    public void setCancelada(Boolean cancelada) {
+        this.cancelada = cancelada;
+    }
+
+    public Double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(Double monto) {
+        this.monto = monto;
+    }
+
+    public Integer getAlojamiento() {
+        return Alojamiento;
+    }
+
+    public void setAlojamiento(Integer alojamiento) {
+        Alojamiento = alojamiento;
+    }
 }

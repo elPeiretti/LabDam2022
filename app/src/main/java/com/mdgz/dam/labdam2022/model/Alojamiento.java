@@ -53,18 +53,6 @@ public abstract class Alojamiento implements Parcelable{
         this.precioBase = precioBase;
         this.foto = foto;
     }
-    public String getTitulo(){
-        return titulo;
-    }
-    public String getFoto(){
-        return foto;
-    }
-
-    public String getDescripcion() { return descripcion;}
-
-    public int getCapacidad() { return capacidad;}
-
-    public double getPrecioBase() { return precioBase;}
 
     @Override
     public void writeToParcel(Parcel parcel, int i){
@@ -76,5 +64,54 @@ public abstract class Alojamiento implements Parcelable{
 
     public String getCaracteristicas(){
         return descripcion+".\nCapacidad: "+capacidad+" personas.\nPrecio base: $"+precioBase.toString()+".\n";
+    }
+
+    @NonNull
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(@NonNull Integer id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Integer getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(Integer capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public Double getPrecioBase() {
+        return precioBase;
+    }
+
+    public void setPrecioBase(Double precioBase) {
+        this.precioBase = precioBase;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

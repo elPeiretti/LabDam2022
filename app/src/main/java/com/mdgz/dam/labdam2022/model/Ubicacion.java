@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.UUID;
 
-@Entity (foreignKeys = @ForeignKey(entity = Ciudad.class, parentColumns = "id", childColumns = "id"))
+@Entity (foreignKeys = @ForeignKey(entity = Ciudad.class, parentColumns = "ID_CIUDAD", childColumns = "ID_UBICACION"))
 public class Ubicacion implements Parcelable {
     @PrimaryKey (autoGenerate = true)
     @NonNull
@@ -81,6 +81,15 @@ public class Ubicacion implements Parcelable {
         return calle+" "+numero+", "+ciudad.toString();
     }
 
+    @NonNull
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(@NonNull Integer id) {
+        this.id = id;
+    }
+
     public double getLat() {
         return lat;
     }
@@ -111,6 +120,14 @@ public class Ubicacion implements Parcelable {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public Integer getIdCiudad() {
+        return idCiudad;
+    }
+
+    public void setIdCiudad(Integer idCiudad) {
+        this.idCiudad = idCiudad;
     }
 
     public Ciudad getCiudad() {

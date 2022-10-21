@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -19,6 +20,7 @@ public class Hotel implements Parcelable {
     @ColumnInfo(name = "CATEGORIA")
     Integer categoria;
 
+    @Ignore
     Ubicacion ubicacion;
 
     public Hotel(){
