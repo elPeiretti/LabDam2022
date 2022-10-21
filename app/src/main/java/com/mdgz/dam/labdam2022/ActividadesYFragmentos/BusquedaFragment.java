@@ -19,6 +19,9 @@ import com.google.android.material.slider.LabelFormatter;
 import com.google.android.material.slider.RangeSlider;
 import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
+import com.mdgz.dam.labdam2022.model.Departamento;
+import com.mdgz.dam.labdam2022.model.Ubicacion;
+import com.mdgz.dam.labdam2022.repo.AlojamientoRepository;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -101,10 +104,6 @@ public class BusquedaFragment extends Fragment {
                 SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
                 if(guardarInfoEstaActivado()) {
                     guardarBusqueda();
-                    Log.i("aca guarda", "aca guarda");
-                }
-                else {
-                    Log.i("aca no hace nada", "aca no hace nada");
                 }
             }
         });
