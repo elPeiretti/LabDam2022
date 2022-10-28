@@ -48,30 +48,25 @@ public class AlojamientoRepository implements AlojamientoDataSource{
 
     private AlojamientoRepository(){}
 
+    public AlojamientoRepository(AlojamientoDataSource alojamientoDataSource) {
+        this.alojamientoDataSource = alojamientoDataSource;
+    }
+
     public static AlojamientoRepository getInstance(){
         return (_REPO==null) ? _REPO = new AlojamientoRepository() : _REPO;
+    }
+
+    public static AlojamientoDataSource createInstance(Context ctx) {
+        return new AlojamientoRepository(new AlojamientoRoomDataSource(ctx));
     }
 
     public List<Alojamiento> listaAlojamientos(){
         return  _ALOJAMIENTOS;
     }
 
-
     @Override
-    public List<Departamento> getAllDepartamentos(Context ctx) {
-        return AlojamientoRoomDataSource.getInstance(ctx).getAllDepartamentos();
+    public void getAllAlojamientos(GetAllAlojamientosCallback callback) {
+        alojamientoDataSource.getAllAlojamientos(callback);
     }
 
-    @Override
-    public List<Habitacion> getAllHabitaciones(Context ctx) {
-        return AlojamientoRoomDataSource.getInstance(ctx).getAllHabitaciones();
-    }
-
-    @Override
-    public List<Alojamiento> getAllAlojamientos(Context ctx){
-        List<Alojamiento> ans = new ArrayList<Alojamiento>();
-        for (Alojamiento a : getAllDepartamentos(ctx))  ans.add(a);
-        for (Alojamiento a : getAllHabitaciones(ctx)) ans.add(a);
-        return ans;
-    }
 }

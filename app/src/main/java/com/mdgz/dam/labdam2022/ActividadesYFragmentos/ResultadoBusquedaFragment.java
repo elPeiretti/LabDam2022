@@ -14,14 +14,19 @@ import android.view.ViewGroup;
 
 import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.databinding.FragmentResultadoBusquedaBinding;
+import com.mdgz.dam.labdam2022.model.Alojamiento;
+import com.mdgz.dam.labdam2022.model.Departamento;
+import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.AlojamientoDataSource;
 import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ResultadoBusquedaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ResultadoBusquedaFragment extends Fragment {
+public class ResultadoBusquedaFragment extends Fragment implements AlojamientoDataSource.GetAllAlojamientosCallback {
 
     private RecyclerView recyclerView ;
     private RecyclerView.Adapter mAdapter;
@@ -88,8 +93,19 @@ public class ResultadoBusquedaFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new AlojamientoRecyclerAdapter(AlojamientoRepository.getInstance().getAllAlojamientos(ctx), ctx);
+        //para cargar los alojamientos
+        AlojamientoRepository.createInstance(ctx).getAllAlojamientos(this);
         recyclerView.setAdapter(mAdapter);
         return binding.getRoot();
+    }
+
+    @Override
+    public void onError() {
+
+    }
+
+    @Override
+    public void onResult(List<Alojamiento> aloj) {
+        mAdapter = new AlojamientoRecyclerAdapter(aloj, ctx);
     }
 }
