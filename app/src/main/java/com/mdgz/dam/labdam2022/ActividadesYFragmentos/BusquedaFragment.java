@@ -19,8 +19,6 @@ import com.google.android.material.slider.LabelFormatter;
 import com.google.android.material.slider.RangeSlider;
 import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
-import com.mdgz.dam.labdam2022.model.Departamento;
-import com.mdgz.dam.labdam2022.persistencia.bdd.MyDatabase;
 import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
 
 import java.io.File;
@@ -105,7 +103,6 @@ public class BusquedaFragment extends Fragment {
                 if(guardarInfoEstaActivado()) {
                     guardarBusqueda();
                 }
-                AlojamientoRepository.getInstance(getContext()).listaAlojamientos();
             }
         });
 

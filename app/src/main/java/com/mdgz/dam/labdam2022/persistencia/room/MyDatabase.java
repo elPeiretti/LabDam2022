@@ -1,8 +1,6 @@
-package com.mdgz.dam.labdam2022.persistencia.bdd;
+package com.mdgz.dam.labdam2022.persistencia.room;
 
-import android.app.ActivityManager;
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -13,7 +11,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.mdgz.dam.labdam2022.misc.Converters;
 import com.mdgz.dam.labdam2022.model.*;
-import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.*;
+import com.mdgz.dam.labdam2022.persistencia.room.dao.AlojamientoDAO;
+import com.mdgz.dam.labdam2022.persistencia.room.dao.FavoritoDAO;
+import com.mdgz.dam.labdam2022.persistencia.room.dao.ReservaDAO;
 import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
 
 import java.util.concurrent.Executors;

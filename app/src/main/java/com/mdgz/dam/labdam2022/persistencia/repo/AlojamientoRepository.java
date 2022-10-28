@@ -2,25 +2,25 @@ package com.mdgz.dam.labdam2022.persistencia.repo;
 
 import android.content.Context;
 
-import androidx.room.Room;
-
-import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.AlojamientoDAO;
+import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.AlojamientoDataSource;
+import com.mdgz.dam.labdam2022.persistencia.room.AlojamientoRoomDataSource;
+import com.mdgz.dam.labdam2022.persistencia.room.dao.AlojamientoDAO;
 import com.mdgz.dam.labdam2022.model.Alojamiento;
 import com.mdgz.dam.labdam2022.model.Departamento;
 import com.mdgz.dam.labdam2022.model.Habitacion;
 import com.mdgz.dam.labdam2022.model.Hotel;
 import com.mdgz.dam.labdam2022.model.Ubicacion;
-import com.mdgz.dam.labdam2022.persistencia.bdd.MyDatabase;
+import com.mdgz.dam.labdam2022.persistencia.room.MyDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class AlojamientoRepository {
+public class AlojamientoRepository implements AlojamientoDataSource{
 
     private static final Ubicacion ubicacion1 = new Ubicacion(-42.6,-38.3,"San Martin","1989",CiudadRepository._CIUDADES.get(0));
     private static final Ubicacion ubicacion2 = new Ubicacion(-42.25,-38.2,"Lopez y Planes","2007",CiudadRepository._CIUDADES.get(1));
     private static AlojamientoRepository _REPO = null;
-    private AlojamientoDAO alojamientoDao;
+    private AlojamientoDataSource alojamientoDataSource;
 
     public static final List<Alojamiento> _ALOJAMIENTOS = List.of(
       //  new Departamento(1, "Dpto1", "El primer dpto",2, 120000.0,true, 300d,1, ubicacion1, R.drawable.depto1),
@@ -46,20 +46,32 @@ public class AlojamientoRepository {
             new Habitacion(2,"habitacion2","otra habitacion",3,12500d,1,1,false, new Hotel(1,"Hotel 1",3,ubicacion2),"https://media-cdn.tripadvisor.com/media/photo-s/0f/52/9e/83/habitacion-estudio-cama.jpg")
     );
 
-    private AlojamientoRepository(Context ctx){
-        MyDatabase bdd = MyDatabase.getInstance(ctx);
-        //Room.databaseBuilder(ctx,MyDatabase.class,"dam-2022").allowMainThreadQueries().build();
-        alojamientoDao = bdd.alojamientoDAO();
-    }
+    private AlojamientoRepository(){}
 
-    public static AlojamientoRepository getInstance(Context ctx){
-        return (_REPO==null) ? _REPO = new AlojamientoRepository(ctx) : _REPO;
-    }
-    public void agregarDepto(Departamento d){
-        alojamientoDao.insertDepartamento(d);
+    public static AlojamientoRepository getInstance(){
+        return (_REPO==null) ? _REPO = new AlojamientoRepository() : _REPO;
     }
 
     public List<Alojamiento> listaAlojamientos(){
         return  _ALOJAMIENTOS;
+    }
+
+
+    @Override
+    public List<Departamento> getAllDepartamentos(Context ctx) {
+        return AlojamientoRoomDataSource.getInstance(ctx).getAllDepartamentos();
+    }
+
+    @Override
+    public List<Habitacion> getAllHabitaciones(Context ctx) {
+        return AlojamientoRoomDataSource.getInstance(ctx).getAllHabitaciones();
+    }
+
+    @Override
+    public List<Alojamiento> getAllAlojamientos(Context ctx){
+        List<Alojamiento> ans = new ArrayList<Alojamiento>();
+        for (Alojamiento a : getAllDepartamentos(ctx))  ans.add(a);
+        for (Alojamiento a : getAllHabitaciones(ctx)) ans.add(a);
+        return ans;
     }
 }

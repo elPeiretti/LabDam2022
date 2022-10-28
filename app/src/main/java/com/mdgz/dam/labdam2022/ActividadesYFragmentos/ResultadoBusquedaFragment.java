@@ -88,7 +88,7 @@ public class ResultadoBusquedaFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new AlojamientoRecyclerAdapter(AlojamientoRepository._ALOJAMIENTOS, ctx);
+        mAdapter = new AlojamientoRecyclerAdapter(AlojamientoRepository.getInstance().getAllAlojamientos(ctx), ctx);
         recyclerView.setAdapter(mAdapter);
         return binding.getRoot();
     }

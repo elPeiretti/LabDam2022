@@ -1,4 +1,4 @@
-package com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource;
+package com.mdgz.dam.labdam2022.persistencia.room.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -24,7 +24,4 @@ public interface AlojamientoDAO {
     @Insert
     void insertAllHabitaciones(List<Habitacion> habs);
 
-    //borrar?
-    @Insert
-    void insertDepartamento(Departamento depto);
 }
