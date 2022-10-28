@@ -19,6 +19,11 @@ public interface AlojamientoDAO {
     @Query("SELECT * FROM habitacion")
     List<Habitacion> loadAllHabitaciones();
 
+    @Insert
+    void insertAllDepartamentos(List<Departamento> dptos);
+    @Insert
+    void insertAllHabitaciones(List<Habitacion> habs);
+
     //borrar?
     @Insert
     void insertDepartamento(Departamento depto);

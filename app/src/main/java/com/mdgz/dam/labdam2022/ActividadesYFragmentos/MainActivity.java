@@ -20,6 +20,9 @@ import android.widget.Toolbar;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.databinding.ActivityMainBinding;
+import com.mdgz.dam.labdam2022.model.Departamento;
+import com.mdgz.dam.labdam2022.persistencia.bdd.MyDatabase;
+import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        MyDatabase.getInstance(getApplicationContext());
 
         MaterialToolbar mToolbar = binding.materialToolbar;
         mToolbar.setOnMenuItemClickListener(new MaterialToolbar.OnMenuItemClickListener() {

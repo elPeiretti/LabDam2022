@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.databinding.FragmentResultadoBusquedaBinding;
-import com.mdgz.dam.labdam2022.repo.AlojamientoRepository;
+import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
 
 /**
  * A simple {@link Fragment} subclass.

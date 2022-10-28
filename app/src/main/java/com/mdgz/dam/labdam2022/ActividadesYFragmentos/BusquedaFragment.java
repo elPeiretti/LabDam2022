@@ -20,8 +20,8 @@ import com.google.android.material.slider.RangeSlider;
 import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
 import com.mdgz.dam.labdam2022.model.Departamento;
-import com.mdgz.dam.labdam2022.model.Ubicacion;
-import com.mdgz.dam.labdam2022.repo.AlojamientoRepository;
+import com.mdgz.dam.labdam2022.persistencia.bdd.MyDatabase;
+import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -105,6 +105,7 @@ public class BusquedaFragment extends Fragment {
                 if(guardarInfoEstaActivado()) {
                     guardarBusqueda();
                 }
+
             }
         });
 
