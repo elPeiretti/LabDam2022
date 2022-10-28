@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
 public class Reserva {
@@ -23,7 +24,9 @@ public class Reserva {
     @ColumnInfo(name="MONTO")
     private Double monto;
     @ColumnInfo(name="ID_ALOJAMIENTO")
-    private Integer Alojamiento;
+    private UUID Alojamiento;
+    @ColumnInfo(name="ID_USUARIO")
+    private UUID usuarioID;
 
     public Reserva(){}
 
@@ -68,11 +71,19 @@ public class Reserva {
         this.monto = monto;
     }
 
-    public Integer getAlojamiento() {
+    public UUID getAlojamiento() {
         return Alojamiento;
     }
 
-    public void setAlojamiento(Integer alojamiento) {
+    public void setAlojamiento(UUID alojamiento) {
         Alojamiento = alojamiento;
+    }
+
+    public UUID getUsuarioID() {
+        return usuarioID;
+    }
+
+    public void setUsuarioID(UUID usuarioID) {
+        this.usuarioID = usuarioID;
     }
 }

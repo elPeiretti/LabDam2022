@@ -19,7 +19,7 @@ import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
 import java.util.concurrent.Executors;
 
 @Database(entities={Favorito.class, Reserva.class, Ciudad.class, Departamento.class, Habitacion.class,
-                    Hotel.class, Ubicacion.class}, version=1)
+                    Hotel.class, Ubicacion.class}, version=2)
 @TypeConverters({Converters.class})
 public abstract class MyDatabase extends RoomDatabase{
 
@@ -33,6 +33,7 @@ public abstract class MyDatabase extends RoomDatabase{
         if (instance == null) {
             instance = buildDatabase(context);
         }
+        instance.alojamientoDAO().loadAllDepartamentos();
         return instance;
     }
 
@@ -52,6 +53,8 @@ public abstract class MyDatabase extends RoomDatabase{
                             }
                         });
                     }
-        }).allowMainThreadQueries().build();
+        }).allowMainThreadQueries()
+                //.fallbackToDestructiveMigration()
+                .build();
     }
 }

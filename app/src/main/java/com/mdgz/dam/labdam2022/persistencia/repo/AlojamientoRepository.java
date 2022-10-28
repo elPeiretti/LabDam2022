@@ -13,6 +13,7 @@ import com.mdgz.dam.labdam2022.model.Ubicacion;
 import com.mdgz.dam.labdam2022.persistencia.bdd.MyDatabase;
 
 import java.util.List;
+import java.util.UUID;
 
 public class AlojamientoRepository {
 
@@ -46,7 +47,8 @@ public class AlojamientoRepository {
     );
 
     private AlojamientoRepository(Context ctx){
-        MyDatabase bdd = Room.databaseBuilder(ctx,MyDatabase.class,"dam-2022").allowMainThreadQueries().build();
+        MyDatabase bdd = MyDatabase.getInstance(ctx);
+        //Room.databaseBuilder(ctx,MyDatabase.class,"dam-2022").allowMainThreadQueries().build();
         alojamientoDao = bdd.alojamientoDAO();
     }
 

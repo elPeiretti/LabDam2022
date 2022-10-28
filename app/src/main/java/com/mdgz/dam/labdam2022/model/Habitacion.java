@@ -11,12 +11,14 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.UUID;
+
 @Entity
 public class Habitacion  extends Alojamiento {
-    @PrimaryKey (autoGenerate = true)
+    //@PrimaryKey (autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "ID_HABITACION")
-    protected Integer id;
+    protected Integer id_habitacion;
     @ColumnInfo(name = "CAMAS_INDIVIDUALES")
     private int camasIndividuales;
     @ColumnInfo(name = "CAMAS_MATRIMONIALES")
@@ -53,19 +55,20 @@ public class Habitacion  extends Alojamiento {
             };
 
     public Habitacion(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, int camasIndividuales, int camasMatrimoniales, Boolean tieneEstacionamiento, Hotel hotel, String foto) {
-        super(id, titulo, descripcion, capacidad, precioBase,foto);
+        super(titulo, descripcion, capacidad, precioBase,foto);
         this.camasIndividuales = camasIndividuales;
         this.camasMatrimoniales = camasMatrimoniales;
         this.tieneEstacionamiento = tieneEstacionamiento;
         this.hotel = hotel;
+        this.id_habitacion = id;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId_habitacion() {
+        return id_habitacion;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_habitacion(Integer id) {
+        this.id_habitacion = id;
     }
 
     public int getCamasIndividuales() {

@@ -12,11 +12,10 @@ public class Favorito {
     @NonNull
     @ColumnInfo(name="ID_FAVORITO")
     private Integer id;
-
     @ColumnInfo(name="ID_ALOJAMIENTO")
-    private Integer alojamientoID;
+    private UUID alojamientoID;
     @ColumnInfo(name="ID_USUARIO")
-    private Integer usuarioID;
+    private UUID usuarioID;
 
     @NonNull
     public Integer getId() {
@@ -27,19 +26,19 @@ public class Favorito {
         this.id = id;
     }
 
-    public Integer getAlojamientoID() {
+    public UUID getAlojamientoID() {
         return alojamientoID;
     }
 
-    public void setAlojamientoID(Integer alojamientoID) {
+    public void setAlojamientoID(UUID alojamientoID) {
         this.alojamientoID = alojamientoID;
     }
 
-    public Integer getUsuarioID() {
+    public UUID getUsuarioID() {
         return usuarioID;
     }
 
-    public void setUsuarioID(Integer usuarioID) {
+    public void setUsuarioID(UUID usuarioID) {
         this.usuarioID = usuarioID;
     }
 

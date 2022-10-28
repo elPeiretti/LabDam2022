@@ -14,10 +14,10 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Departamento extends Alojamiento{
-    @PrimaryKey (autoGenerate = true)
+    //@PrimaryKey (autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "ID_DEPARTAMENTO")
-    protected Integer id;
+    protected Integer id_departamento;
 
     @ColumnInfo(name = "TIENE_WIFI")
     private Boolean tieneWifi;
@@ -48,7 +48,6 @@ public class Departamento extends Alojamiento{
         costoLimpieza=in.readDouble();
         cantidadHabitaciones=in.readInt();
         ubicacion=in.readParcelable(Ubicacion.class.getClassLoader());
-
     }
 
     public void setUbicacion(Ubicacion ubicacion) {
@@ -60,11 +59,21 @@ public class Departamento extends Alojamiento{
     }
 
     public Departamento(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, Boolean tieneWifi, Double costoLimpieza, Integer cantidadHabitaciones,Ubicacion ubicacion, String foto) {
-        super(id, titulo, descripcion, capacidad, precioBase, foto);
+        super(titulo, descripcion, capacidad, precioBase, foto);
         this.tieneWifi = tieneWifi;
         this.costoLimpieza = costoLimpieza;
         this.cantidadHabitaciones = cantidadHabitaciones;
         this.ubicacion = ubicacion;
+        this.id_departamento = id;
+    }
+
+    @NonNull
+    public Integer getId_departamento() {
+        return id_departamento;
+    }
+
+    public void setId_departamento(@NonNull Integer id_departamento) {
+        this.id_departamento = id_departamento;
     }
 
     public Boolean getTieneWifi() {

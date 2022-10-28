@@ -105,7 +105,7 @@ public class BusquedaFragment extends Fragment {
                 if(guardarInfoEstaActivado()) {
                     guardarBusqueda();
                 }
-
+                AlojamientoRepository.getInstance(getContext()).listaAlojamientos();
             }
         });
 

@@ -9,13 +9,15 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.UUID;
+
 @Entity
 public abstract class Alojamiento implements Parcelable{
 
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey
     @NonNull
     @ColumnInfo(name = "ID_ALOJAMIENTO")
-    protected Integer id;
+    protected UUID id;
 
     @ColumnInfo(name = "TITULO")
     protected String titulo;
@@ -45,9 +47,9 @@ public abstract class Alojamiento implements Parcelable{
         super();
     }
 
-    public Alojamiento(Integer id, String titulo, String descripcion, Integer capacidad,
+    public Alojamiento(String titulo, String descripcion, Integer capacidad,
                        Double precioBase, String foto) {
-        this.id = id;
+        this.id = UUID.randomUUID();
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.capacidad = capacidad;
@@ -68,11 +70,11 @@ public abstract class Alojamiento implements Parcelable{
     }
 
     @NonNull
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(@NonNull Integer id) {
+    public void setId(@NonNull UUID id) {
         this.id = id;
     }
 
