@@ -1,4 +1,4 @@
-package com.mdgz.dam.labdam2022.model;
+package com.mdgz.dam.labdam2022.persistencia.room.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -8,21 +8,29 @@ import androidx.room.PrimaryKey;
 import java.time.Instant;
 import java.util.UUID;
 
+@Entity()
+public class ReservaEntity {
 
-public class Reserva {
-
+    @PrimaryKey (autoGenerate = true)
     @NonNull
+    @ColumnInfo(name="ID_RESERVA")
     private Integer id;
+    @ColumnInfo(name="FECHA_INGRESO")
     private Instant fechaIngreso;
+    @ColumnInfo(name="FECHA_EGRESO")
     private Instant fechaEgreso;
+    @ColumnInfo(name="CANCELADA")
     private Boolean cancelada;
+    @ColumnInfo(name="MONTO")
     private Double monto;
+    @ColumnInfo(name="ID_ALOJAMIENTO")
     private UUID alojamientoId;
+    @ColumnInfo(name="ID_USUARIO")
     private UUID usuarioID;
 
-    public Reserva(){}
+    public ReservaEntity(){}
 
-    public Reserva(Integer id, Instant fechaIngreso, Instant fechaEgreso, Boolean cancelada, Double monto, UUID alojamientoId, UUID usuarioID){
+    public ReservaEntity(Integer id, Instant fechaIngreso, Instant fechaEgreso, Boolean cancelada, Double monto, UUID alojamientoId, UUID usuarioID){
         this.id = id;
         this.fechaIngreso = fechaIngreso;
         this.fechaEgreso = fechaEgreso;
@@ -78,7 +86,7 @@ public class Reserva {
     }
 
     public void setAlojamientoId(UUID alojamiento) {
-        alojamiento = alojamientoId;
+        alojamientoId = alojamiento;
     }
 
     public UUID getUsuarioID() {

@@ -1,4 +1,4 @@
-package com.mdgz.dam.labdam2022.model;
+package com.mdgz.dam.labdam2022.persistencia.room.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -10,67 +10,39 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import java.util.UUID;
-
-public class Ubicacion implements Parcelable {
-
+@Entity (foreignKeys = @ForeignKey(entity = CiudadEntity.class, parentColumns = "ID_CIUDAD", childColumns = "ID_UBICACION"))
+public class UbicacionEntity {
+    @PrimaryKey (autoGenerate = true)
     @NonNull
+    @ColumnInfo(name="ID_UBICACION")
     private Integer id;
+    @ColumnInfo(name="LAT")
     private double lat;
+    @ColumnInfo(name="LNG")
     private double lng;
+    @ColumnInfo(name="CALLE")
     private String calle;
+    @ColumnInfo(name="NUMERO")
     private String numero;
+    @ColumnInfo(name="ID_CIUDAD")
     private Integer idCiudad;
 
-    private Ciudad ciudad;
+    @Ignore
+    private CiudadEntity ciudadEntity;
 
-    public Ubicacion(){}
+    public UbicacionEntity(){}
 
-    public Ubicacion(double lat, double lng, String calle, String numero, Ciudad ciudad) {
+    public UbicacionEntity(double lat, double lng, String calle, String numero, CiudadEntity ciudadEntity) {
         this.lat = lat;
         this.lng = lng;
         this.calle = calle;
         this.numero = numero;
-        this.ciudad = ciudad;
+        this.ciudadEntity = ciudadEntity;
     }
-
-    protected Ubicacion(Parcel in) {
-        lat = in.readDouble();
-        lng = in.readDouble();
-        calle = in.readString();
-        numero = in.readString();
-        ciudad = in.readParcelable(Ciudad.class.getClassLoader());
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeDouble(lat);
-        dest.writeDouble(lng);
-        dest.writeString(calle);
-        dest.writeString(numero);
-        dest.writeParcelable(ciudad,flags);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Ubicacion> CREATOR = new Creator<Ubicacion>() {
-        @Override
-        public Ubicacion createFromParcel(Parcel in) {
-            return new Ubicacion(in);
-        }
-
-        @Override
-        public Ubicacion[] newArray(int size) {
-            return new Ubicacion[size];
-        }
-    };
 
     @Override
     public String toString(){
-        return calle+" "+numero+", "+ciudad.toString();
+        return calle+" "+numero+", "+ ciudadEntity.toString();
     }
 
     @NonNull
@@ -122,11 +94,11 @@ public class Ubicacion implements Parcelable {
         this.idCiudad = idCiudad;
     }
 
-    public Ciudad getCiudad() {
-        return ciudad;
+    public CiudadEntity getCiudad() {
+        return ciudadEntity;
     }
 
-    public void setCiudad(Ciudad ciudad) {
-        this.ciudad = ciudad;
+    public void setCiudad(CiudadEntity ciudadEntity) {
+        this.ciudadEntity = ciudadEntity;
     }
 }

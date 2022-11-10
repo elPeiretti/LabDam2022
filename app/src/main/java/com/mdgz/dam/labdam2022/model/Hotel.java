@@ -9,15 +9,12 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity
+
 public class Hotel implements Parcelable {
-    @PrimaryKey(autoGenerate = true)
+
     @NonNull
-    @ColumnInfo(name = "ID_HOTEL")
     Integer id;
-    @ColumnInfo(name = "NOMBRE")
     String nombre;
-    @ColumnInfo(name = "CATEGORIA")
     Integer categoria;
 
     @Ignore

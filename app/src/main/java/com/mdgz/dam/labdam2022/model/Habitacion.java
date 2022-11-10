@@ -13,20 +13,13 @@ import androidx.room.PrimaryKey;
 
 import java.util.UUID;
 
-@Entity
 public class Habitacion  extends Alojamiento {
-    //@PrimaryKey (autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "ID_HABITACION")
-    protected Integer id_habitacion;
-    @ColumnInfo(name = "CAMAS_INDIVIDUALES")
-    private int camasIndividuales;
-    @ColumnInfo(name = "CAMAS_MATRIMONIALES")
-    private int camasMatrimoniales;
-    @ColumnInfo(name = "TIENE_ESTACIONAMIENTO")
-    private Boolean tieneEstacionamiento;
 
-    @Ignore
+    @NonNull
+    protected Integer id_habitacion;
+    private int camasIndividuales;
+    private int camasMatrimoniales;
+    private Boolean tieneEstacionamiento;
     private Hotel hotel;
 
     public Habitacion() {

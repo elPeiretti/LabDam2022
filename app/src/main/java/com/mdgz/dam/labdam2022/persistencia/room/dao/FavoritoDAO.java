@@ -6,15 +6,17 @@ import androidx.room.Query;
 
 
 import com.mdgz.dam.labdam2022.model.Favorito;
+import com.mdgz.dam.labdam2022.persistencia.room.entities.FavoritoEntity;
+
 import java.util.List;
 
 @Dao
 public interface FavoritoDAO {
 
-    @Query("SELECT * FROM favorito")
-    List<Favorito> loadAllFavoritos();
+    @Query("SELECT * FROM favoritoentity")
+    List<FavoritoEntity> loadAllFavoritos();
 
     @Insert
-    void insertFavorito(Favorito fav);
+    void insertFavorito(FavoritoEntity fav);
 
 }

@@ -5,14 +5,15 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.mdgz.dam.labdam2022.model.Reserva;
+import com.mdgz.dam.labdam2022.persistencia.room.entities.ReservaEntity;
 
 import java.util.List;
 
 @Dao
 public interface ReservaDAO{
-    @Query("SELECT * FROM reserva")
-    List<Reserva> loadAllReservas();
+    @Query("SELECT * FROM reservaentity")
+    List<ReservaEntity> loadAllReservas();
 
     @Insert
-    void insertReserva(Reserva r);
+    void insertReserva(ReservaEntity r);
 }

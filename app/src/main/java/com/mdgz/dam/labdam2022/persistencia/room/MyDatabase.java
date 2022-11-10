@@ -1,6 +1,7 @@
 package com.mdgz.dam.labdam2022.persistencia.room;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -10,16 +11,16 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.mdgz.dam.labdam2022.misc.Converters;
-import com.mdgz.dam.labdam2022.model.*;
-import com.mdgz.dam.labdam2022.persistencia.room.dao.AlojamientoDAO;
-import com.mdgz.dam.labdam2022.persistencia.room.dao.FavoritoDAO;
-import com.mdgz.dam.labdam2022.persistencia.room.dao.ReservaDAO;
+import com.mdgz.dam.labdam2022.persistencia.room.dao.*;
 import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
+import com.mdgz.dam.labdam2022.persistencia.room.entities.*;
+import com.mdgz.dam.labdam2022.persistencia.room.mapper.DepartamentoMapper;
+import com.mdgz.dam.labdam2022.persistencia.room.mapper.HabitacionMapper;
 
 import java.util.concurrent.Executors;
 
-@Database(entities={Favorito.class, Reserva.class, Ciudad.class, Departamento.class, Habitacion.class,
-                    Hotel.class, Ubicacion.class}, version=2)
+@Database(entities={AlojamientoEntity.class, FavoritoEntity.class, ReservaEntity.class, CiudadEntity.class,
+        DepartamentoEntity.class, HabitacionEntity.class, HotelEntity.class, UbicacionEntity.class}, version=3)
 @TypeConverters({Converters.class})
 public abstract class MyDatabase extends RoomDatabase{
 
@@ -48,8 +49,8 @@ public abstract class MyDatabase extends RoomDatabase{
                         Executors.newSingleThreadScheduledExecutor().execute( new Runnable(){
                             @Override
                             public void run() {
-                                getInstance(context).alojamientoDAO().insertAllDepartamentos(AlojamientoRepository._DEPARTAMENTOS);
-                                getInstance(context).alojamientoDAO().insertAllHabitaciones(AlojamientoRepository._HABITACIONES);
+                                getInstance(context).alojamientoDAO().insertAllDepartamentos(DepartamentoMapper.toEntities(AlojamientoRepository._DEPARTAMENTOS));
+                                getInstance(context).alojamientoDAO().insertAllHabitaciones(HabitacionMapper.toEntities(AlojamientoRepository._HABITACIONES));
                             }
                         });
                     }

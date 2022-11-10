@@ -12,21 +12,12 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity
 public class Departamento extends Alojamiento{
-    //@PrimaryKey (autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "ID_DEPARTAMENTO")
+
     protected Integer id_departamento;
-
-    @ColumnInfo(name = "TIENE_WIFI")
     private Boolean tieneWifi;
-    @ColumnInfo(name = "COSTO_LIMPIEZA")
     private Double costoLimpieza;
-    @ColumnInfo(name = "CANTIDAD_HABITACIONES")
     private Integer cantidadHabitaciones;
-
-    @Ignore
     private Ubicacion ubicacion;
 
     public static final Parcelable.Creator<Departamento> CREATOR =

@@ -1,17 +1,25 @@
-package com.mdgz.dam.labdam2022.model;
+package com.mdgz.dam.labdam2022.persistencia.room.entities;
 
 import androidx.annotation.NonNull;
-import androidx.room.*;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.util.UUID;
 
-public class Favorito {
+@Entity()
+public class FavoritoEntity {
 
+    @PrimaryKey (autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name="ID_FAVORITO")
     private Integer id;
+    @ColumnInfo(name="ID_ALOJAMIENTO")
     private UUID alojamientoID;
+    @ColumnInfo(name="ID_USUARIO")
     private UUID usuarioID;
 
-    public Favorito(Integer id, UUID alojamientoID, UUID usuarioID){
+    public FavoritoEntity(Integer id, UUID alojamientoID, UUID usuarioID){
         this.id = id;
         this.alojamientoID = alojamientoID;
         this.usuarioID = usuarioID;
@@ -42,6 +50,6 @@ public class Favorito {
         this.usuarioID = usuarioID;
     }
 
-    public Favorito(){
+    public FavoritoEntity(){
     }
 }
