@@ -6,10 +6,14 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity()
+import com.mdgz.dam.labdam2022.model.Ubicacion;
+
+@Entity(foreignKeys = @ForeignKey(entity = UbicacionEntity.class, parentColumns = "ID_UBICACION", childColumns = "ID_UBICACION"))
+
 public class HotelEntity {
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -20,23 +24,24 @@ public class HotelEntity {
     @ColumnInfo(name = "CATEGORIA")
     Integer categoria;
 
+    @ColumnInfo(name = "ID_UBICACION")
+    Integer id_ubicacion;
+
     @Ignore
     UbicacionEntity ubicacionEntity;
 
-    public HotelEntity(){
-        super();
-    }
+    public HotelEntity(){}
 
-    public HotelEntity(Integer id, String nombre, Integer categoria, UbicacionEntity ubicacionEntity) {
-        this.id = id;
+    @Ignore
+    public HotelEntity(String nombre, Integer categoria, Integer ubicacionEntity) {
         this.nombre = nombre;
         this.categoria = categoria;
-        this.ubicacionEntity = ubicacionEntity;
+        this.id_ubicacion = ubicacionEntity;
     }
 
     @Override
     public String toString(){
-        return "Hotel "+nombre+", "+ ubicacionEntity.toString();
+        return "Hotel "+nombre+", "+ id_ubicacion.toString();
     }
 
     public Integer getId() {
@@ -63,11 +68,24 @@ public class HotelEntity {
         this.categoria = categoria;
     }
 
-    public UbicacionEntity getUbicacion() {
+    public Integer getIdUbicacion() {
+        return id_ubicacion;
+    }
+
+    public Integer getId_ubicacion() {
+        return id_ubicacion;
+    }
+
+    public void setId_ubicacion(Integer id_ubicacion) {
+        this.id_ubicacion = id_ubicacion;
+    }
+
+    public UbicacionEntity getUbicacionEntity() {
         return ubicacionEntity;
     }
 
-    public void setUbicacion(UbicacionEntity ubicacionEntity) {
+    public void setUbicacionEntity(UbicacionEntity ubicacionEntity) {
         this.ubicacionEntity = ubicacionEntity;
     }
+
 }

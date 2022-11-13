@@ -1,16 +1,7 @@
 package com.mdgz.dam.labdam2022.model;
 
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
 public class Departamento extends Alojamiento{
 
@@ -55,15 +46,14 @@ public class Departamento extends Alojamiento{
         this.costoLimpieza = costoLimpieza;
         this.cantidadHabitaciones = cantidadHabitaciones;
         this.ubicacion = ubicacion;
-        this.id_departamento = id;
+        this.id_departamento=id;
     }
 
-    @NonNull
     public Integer getId_departamento() {
         return id_departamento;
     }
 
-    public void setId_departamento(@NonNull Integer id_departamento) {
+    public void setId_departamento(Integer id_departamento) {
         this.id_departamento = id_departamento;
     }
 
@@ -93,7 +83,7 @@ public class Departamento extends Alojamiento{
 
     @Override
     public Ubicacion getUbicacion() {
-        return null;
+        return this.ubicacion;
     }
 
     @Override

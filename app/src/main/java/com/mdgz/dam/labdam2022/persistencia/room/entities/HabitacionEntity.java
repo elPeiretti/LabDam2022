@@ -5,11 +5,24 @@ import android.os.Parcel;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
-@Entity()
-public class HabitacionEntity extends AlojamientoEntity {
-    //@PrimaryKey (autoGenerate = true)
+import com.mdgz.dam.labdam2022.model.Hotel;
+
+import java.util.UUID;
+
+@Entity (foreignKeys = {
+        @ForeignKey(entity = AlojamientoEntity.class, parentColumns = "ID_ALOJAMIENTO", childColumns = "ID_ALOJAMIENTO",
+        onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE),
+
+        @ForeignKey(entity = HotelEntity.class, parentColumns = "ID_HOTEL", childColumns = "ID_HOTEL",
+                onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE)
+        })
+
+public class HabitacionEntity {
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "ID_HABITACION")
     protected Integer id_habitacion;
@@ -19,29 +32,34 @@ public class HabitacionEntity extends AlojamientoEntity {
     private int camasMatrimoniales;
     @ColumnInfo(name = "TIENE_ESTACIONAMIENTO")
     private Boolean tieneEstacionamiento;
+    @ColumnInfo(name = "ID_ALOJAMIENTO")
+    private UUID alojamientoId;
+    @ColumnInfo(name = "ID_HOTEL")
+    private Integer id_hotel;
+    @Ignore
+    HotelEntity hotelEntity;
+    @Ignore
+    AlojamientoEntity alojamientoEntity;
+
+    public HabitacionEntity(){}
 
     @Ignore
-    private HotelEntity hotelEntity;
-
-    public HabitacionEntity() {
-        super();
-    }
-
-    public HabitacionEntity(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, int camasIndividuales, int camasMatrimoniales, Boolean tieneEstacionamiento, HotelEntity hotelEntity, String foto) {
-        super(titulo, descripcion, capacidad, precioBase,foto);
+    public HabitacionEntity(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, int camasIndividuales, int camasMatrimoniales, Boolean tieneEstacionamiento, Integer hotelEntity, String foto) {
         this.camasIndividuales = camasIndividuales;
         this.camasMatrimoniales = camasMatrimoniales;
         this.tieneEstacionamiento = tieneEstacionamiento;
-        this.hotelEntity = hotelEntity;
+        this.id_hotel = hotelEntity;
         this.id_habitacion = id;
+        this.alojamientoId = UUID.randomUUID();
     }
 
+    @NonNull
     public Integer getId_habitacion() {
         return id_habitacion;
     }
 
-    public void setId_habitacion(Integer id) {
-        this.id_habitacion = id;
+    public void setId_habitacion(@NonNull Integer id_habitacion) {
+        this.id_habitacion = id_habitacion;
     }
 
     public int getCamasIndividuales() {
@@ -68,24 +86,35 @@ public class HabitacionEntity extends AlojamientoEntity {
         this.tieneEstacionamiento = tieneEstacionamiento;
     }
 
-    public HotelEntity getHotel() {
+    public UUID getAlojamientoId() {
+        return alojamientoId;
+    }
+
+    public void setAlojamientoId(UUID alojamientoId) {
+        this.alojamientoId = alojamientoId;
+    }
+
+    public Integer getId_hotel() {
+        return id_hotel;
+    }
+
+    public HotelEntity getHotelEntity() {
         return hotelEntity;
     }
 
-    public void setHotel(HotelEntity hotelEntity) {
+    public void setHotelEntity(HotelEntity hotelEntity) {
         this.hotelEntity = hotelEntity;
     }
 
-    @Override
-    public UbicacionEntity getUbicacion() {
-        return hotelEntity.getUbicacion();
+    public AlojamientoEntity getAlojamientoEntity() {
+        return alojamientoEntity;
     }
 
-    @Override
-    public String getCaracteristicas(){
-       return super.getCaracteristicas()+"Tipo: Habitacion"+".\nCantidad de camas individuales: "+String.valueOf(camasIndividuales)+
-                ".\nCantidad de camas matrimoniales: "+String.valueOf(camasMatrimoniales)+".\nTiene estacionamiento: "+(tieneEstacionamiento?"Si":"No")+
-                ".\nUbicacion: "+ hotelEntity.toString()+".\n";
+    public void setAlojamientoEntity(AlojamientoEntity alojamientoEntity) {
+        this.alojamientoEntity = alojamientoEntity;
     }
 
+    public void setId_hotel(Integer id_hotel) {
+        this.id_hotel = id_hotel;
+    }
 }

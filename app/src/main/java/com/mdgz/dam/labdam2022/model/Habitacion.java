@@ -1,21 +1,10 @@
 package com.mdgz.dam.labdam2022.model;
 
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.Html;
-
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
-
-import java.util.UUID;
 
 public class Habitacion  extends Alojamiento {
 
-    @NonNull
     protected Integer id_habitacion;
     private int camasIndividuales;
     private int camasMatrimoniales;

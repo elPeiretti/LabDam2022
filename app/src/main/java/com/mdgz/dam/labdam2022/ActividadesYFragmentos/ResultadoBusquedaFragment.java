@@ -16,8 +16,10 @@ import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.databinding.FragmentResultadoBusquedaBinding;
 import com.mdgz.dam.labdam2022.model.Alojamiento;
 import com.mdgz.dam.labdam2022.model.Departamento;
+import com.mdgz.dam.labdam2022.model.Habitacion;
 import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.AlojamientoDataSource;
 import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
+import com.mdgz.dam.labdam2022.persistencia.room.OnResult;
 
 import java.util.List;
 
@@ -26,7 +28,7 @@ import java.util.List;
  * Use the {@link ResultadoBusquedaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ResultadoBusquedaFragment extends Fragment implements AlojamientoDataSource.GetAllAlojamientosCallback {
+public class ResultadoBusquedaFragment extends Fragment implements OnResult<List<Alojamiento>> {
 
     private RecyclerView recyclerView ;
     private RecyclerView.Adapter mAdapter;
@@ -99,13 +101,16 @@ public class ResultadoBusquedaFragment extends Fragment implements AlojamientoDa
         return binding.getRoot();
     }
 
+
     @Override
-    public void onError() {
+    public void onSuccess(List<Alojamiento> result) {
+        mAdapter = new AlojamientoRecyclerAdapter(result, ctx);
 
     }
 
     @Override
-    public void onResult(List<Alojamiento> aloj) {
-        mAdapter = new AlojamientoRecyclerAdapter(aloj, ctx);
+    public void onError(Throwable exception) {
+
     }
+
 }

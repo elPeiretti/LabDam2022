@@ -6,18 +6,18 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.UUID;
 
 @Entity()
-public abstract class AlojamientoEntity {
+public class AlojamientoEntity {
 
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "ID_ALOJAMIENTO")
     protected UUID id;
-
     @ColumnInfo(name = "TITULO")
     protected String titulo;
     @ColumnInfo(name = "DESCRIPCION")
@@ -29,15 +29,13 @@ public abstract class AlojamientoEntity {
     @ColumnInfo(name = "FOTO")
     protected String foto;
 
-    public abstract UbicacionEntity getUbicacion();
     public Double costoDia(){
         return precioBase;
     }
 
-    public AlojamientoEntity(){
-        super();
-    }
+    public AlojamientoEntity(){}
 
+    @Ignore
     public AlojamientoEntity(String titulo, String descripcion, Integer capacidad,
                              Double precioBase, String foto) {
         this.id = UUID.randomUUID();

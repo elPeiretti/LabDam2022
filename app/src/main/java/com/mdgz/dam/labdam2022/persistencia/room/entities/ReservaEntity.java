@@ -3,12 +3,14 @@ package com.mdgz.dam.labdam2022.persistencia.room.entities;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.time.Instant;
 import java.util.UUID;
 
-@Entity()
+@Entity(foreignKeys = @ForeignKey(entity = AlojamientoEntity.class, parentColumns = "ID_ALOJAMIENTO", childColumns = "ID_ALOJAMIENTO"))
 public class ReservaEntity {
 
     @PrimaryKey (autoGenerate = true)
@@ -29,7 +31,7 @@ public class ReservaEntity {
     private UUID usuarioID;
 
     public ReservaEntity(){}
-
+    @Ignore
     public ReservaEntity(Integer id, Instant fechaIngreso, Instant fechaEgreso, Boolean cancelada, Double monto, UUID alojamientoId, UUID usuarioID){
         this.id = id;
         this.fechaIngreso = fechaIngreso;

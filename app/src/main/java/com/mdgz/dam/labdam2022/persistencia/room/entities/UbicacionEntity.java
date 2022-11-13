@@ -31,7 +31,7 @@ public class UbicacionEntity {
     private CiudadEntity ciudadEntity;
 
     public UbicacionEntity(){}
-
+    @Ignore
     public UbicacionEntity(double lat, double lng, String calle, String numero, CiudadEntity ciudadEntity) {
         this.lat = lat;
         this.lng = lng;
