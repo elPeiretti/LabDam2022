@@ -15,6 +15,7 @@ public class DepartamentoMapper {
 
     public static Departamento fromEntity(DepartamentoEntity d, AlojamientoEntity a, UbicacionEntity u) {
         return new Departamento(
+                d.getAlojamientoId(),
                 d.getId_departamento(),
                 a.getTitulo(),
                 a.getDescripcion(),
@@ -42,6 +43,7 @@ public class DepartamentoMapper {
 
     public static DepartamentoEntity toEntity(Departamento d){
         return new DepartamentoEntity(
+                d.getId(),
                 d.getId_departamento(),
                 d.getTitulo(),
                 d.getDescripcion(),

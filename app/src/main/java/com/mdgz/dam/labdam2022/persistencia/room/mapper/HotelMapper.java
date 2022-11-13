@@ -20,6 +20,7 @@ public class HotelMapper {
 
     public static HotelEntity toEntity(Hotel h) {
         return new HotelEntity(
+                h.getId(),
                 h.getNombre(),
                 h.getCategoria(),
                 UbicacionMapper.toEntity(h.getUbicacion()).getId()

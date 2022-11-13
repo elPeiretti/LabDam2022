@@ -15,6 +15,7 @@ public class HabitacionMapper {
     public static Habitacion fromEntity(HabitacionEntity h, AlojamientoEntity a, HotelEntity hotel, UbicacionEntity u) {
 
         return new Habitacion(
+                h.getAlojamientoId(),
                 h.getId_habitacion(),
                 a.getTitulo(),
                 a.getDescripcion(),
@@ -42,6 +43,7 @@ public class HabitacionMapper {
 
     public static HabitacionEntity toEntity(Habitacion h){
         return new HabitacionEntity(
+                h.getId(),
                 h.getId_habitacion(),
                 h.getTitulo(),
                 h.getDescripcion(),

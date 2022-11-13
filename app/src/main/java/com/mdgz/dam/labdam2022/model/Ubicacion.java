@@ -26,7 +26,8 @@ public class Ubicacion implements Parcelable {
 
     public Ubicacion(){}
 
-    public Ubicacion(double lat, double lng, String calle, String numero, Ciudad ciudad) {
+    public Ubicacion(Integer id,double lat, double lng, String calle, String numero, Ciudad ciudad) {
+        this.id = id;
         this.lat = lat;
         this.lng = lng;
         this.calle = calle;

@@ -36,9 +36,9 @@ public class AlojamientoEntity {
     public AlojamientoEntity(){}
 
     @Ignore
-    public AlojamientoEntity(String titulo, String descripcion, Integer capacidad,
+    public AlojamientoEntity(UUID id, String titulo, String descripcion, Integer capacidad,
                              Double precioBase, String foto) {
-        this.id = UUID.randomUUID();
+        this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.capacidad = capacidad;

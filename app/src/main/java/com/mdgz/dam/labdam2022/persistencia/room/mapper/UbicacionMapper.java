@@ -10,6 +10,7 @@ public class UbicacionMapper {
 
     public static Ubicacion fromEntity(UbicacionEntity u) {
         return new Ubicacion(
+                u.getId(),
                 u.getLat(),
                 u.getLng(),
                 u.getCalle(),
@@ -20,6 +21,7 @@ public class UbicacionMapper {
 
     public static UbicacionEntity toEntity(Ubicacion u) {
         return new UbicacionEntity(
+                u.getId(),
                 u.getLat(),
                 u.getLng(),
                 u.getCalle(),

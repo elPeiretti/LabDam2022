@@ -39,36 +39,32 @@ public abstract class MyDatabase extends RoomDatabase{
     public synchronized static MyDatabase getInstance(Context context) {
         if (instance == null) {
             instance = buildDatabase(context);
+            Log.e("aca", "aca1");
         }
         instance.alojamientoDAO().loadAllDepartamentos();
         return instance;
     }
 
     private static MyDatabase buildDatabase(final Context context){
+        Log.e("aca", "aca00");
         return Room.databaseBuilder(context,
                 MyDatabase.class,
                 "dam-2022")
                 .addCallback(new Callback(){
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db){
-                        Log.e("aca", "aca");
+                        Log.e("aca", "aca0");
                         super.onCreate(db);
                         Executors.newSingleThreadScheduledExecutor().execute( new Runnable(){
                             @Override
                             public void run() {
-                              //  getInstance(context).alojamientoDAO().insertAllCiudades(CiudadMapper.toEntities(CiudadRepository._CIUDADES));
-                              //  getInstance(context).alojamientoDAO().insertAllUbicaciones(UbicacionMapper.toEntities(AlojamientoRepository._UBICACIONES));
-                             /*   getInstance(context).alojamientoDAO().insertAllHoteles(HotelMapper.toEntities(AlojamientoRepository._HOTELES));
-
-                                Log.e("aca0", String.valueOf(AlojamientoRepository._ALOJAMIENTOS.size()));
+                                Log.e("aca", "aca");
+                                getInstance(context).alojamientoDAO().insertAllCiudades(CiudadMapper.toEntities(CiudadRepository._CIUDADES));
+                                getInstance(context).alojamientoDAO().insertAllUbicaciones(UbicacionMapper.toEntities(AlojamientoRepository._UBICACIONES));
+                                getInstance(context).alojamientoDAO().insertAllHoteles(HotelMapper.toEntities(AlojamientoRepository._HOTELES));
                                 getInstance(context).alojamientoDAO().insertAllAlojamientos(AlojamientoMapper.toEntites(AlojamientoRepository._ALOJAMIENTOS));
-                                Log.e("aca1", String.valueOf(AlojamientoRepository._ALOJAMIENTOS.size()));
                                 getInstance(context).alojamientoDAO().insertAllDepartamentos(DepartamentoMapper.toEntities(AlojamientoRepository._DEPARTAMENTOS));
-                                Log.e("aca2", String.valueOf(AlojamientoRepository._DEPARTAMENTOS.size()));
                                 getInstance(context).alojamientoDAO().insertAllHabitaciones(HabitacionMapper.toEntities(AlojamientoRepository._HABITACIONES));
-                                Log.e("aca3", String.valueOf(AlojamientoRepository._HABITACIONES.size()));
-
-                              */
                             }
                         });
                     }

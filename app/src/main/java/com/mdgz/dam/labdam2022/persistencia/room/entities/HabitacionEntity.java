@@ -44,13 +44,13 @@ public class HabitacionEntity {
     public HabitacionEntity(){}
 
     @Ignore
-    public HabitacionEntity(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, int camasIndividuales, int camasMatrimoniales, Boolean tieneEstacionamiento, Integer hotelEntity, String foto) {
+    public HabitacionEntity(UUID aloj, Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, int camasIndividuales, int camasMatrimoniales, Boolean tieneEstacionamiento, Integer hotelEntity, String foto) {
         this.camasIndividuales = camasIndividuales;
         this.camasMatrimoniales = camasMatrimoniales;
         this.tieneEstacionamiento = tieneEstacionamiento;
         this.id_hotel = hotelEntity;
         this.id_habitacion = id;
-        this.alojamientoId = UUID.randomUUID();
+        this.alojamientoId = aloj;
     }
 
     @NonNull

@@ -23,12 +23,12 @@ public class AlojamientoMapper {
     }
 
     public static AlojamientoEntity toEntity(Alojamiento a){
-        return new AlojamientoEntity(a.getTitulo(),a.getDescripcion(),a.getCapacidad(), a.getPrecioBase(), a.getFoto());
+        return new AlojamientoEntity(a.getId(), a.getTitulo(),a.getDescripcion(),a.getCapacidad(), a.getPrecioBase(), a.getFoto());
         }
     public static List<AlojamientoEntity> toEntites(List<Alojamiento> aloj){
     List<AlojamientoEntity> alojamientos = new ArrayList<AlojamientoEntity>();
     for(Alojamiento a : aloj ) {
-        alojamientos.add(new AlojamientoEntity(a.getTitulo(), a.getDescripcion(), a.getCapacidad(),
+        alojamientos.add(new AlojamientoEntity(a.getId(), a.getTitulo(), a.getDescripcion(), a.getCapacidad(),
                 a.getPrecioBase(), a.getFoto()));
     }
     return alojamientos;

@@ -33,8 +33,9 @@ public class HotelEntity {
     public HotelEntity(){}
 
     @Ignore
-    public HotelEntity(String nombre, Integer categoria, Integer ubicacionEntity) {
+    public HotelEntity(Integer id, String nombre, Integer categoria, Integer ubicacionEntity) {
         this.nombre = nombre;
+        this.id = id;
         this.categoria = categoria;
         this.id_ubicacion = ubicacionEntity;
     }

@@ -32,12 +32,13 @@ public class UbicacionEntity {
 
     public UbicacionEntity(){}
     @Ignore
-    public UbicacionEntity(double lat, double lng, String calle, String numero, CiudadEntity ciudadEntity) {
+    public UbicacionEntity(Integer id, double lat, double lng, String calle, String numero, CiudadEntity ciudadEntity) {
         this.lat = lat;
         this.lng = lng;
         this.calle = calle;
         this.numero = numero;
         this.ciudadEntity = ciudadEntity;
+        this.id = id;
     }
 
     @Override

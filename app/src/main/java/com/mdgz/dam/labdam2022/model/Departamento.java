@@ -3,6 +3,8 @@ package com.mdgz.dam.labdam2022.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.UUID;
+
 public class Departamento extends Alojamiento{
 
     protected Integer id_departamento;
@@ -40,8 +42,23 @@ public class Departamento extends Alojamiento{
         super();
     }
 
-    public Departamento(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, Boolean tieneWifi, Double costoLimpieza, Integer cantidadHabitaciones,Ubicacion ubicacion, String foto) {
-        super(titulo, descripcion, capacidad, precioBase, foto);
+    public Departamento(Alojamiento a, Integer id,
+                        Boolean tieneWifi, Double costoLimpieza, Integer cantidadHabitaciones, Ubicacion ubicacion){
+        this.id = a.getId();
+        this.titulo = a.getTitulo();
+        this.descripcion = a.getDescripcion();
+        this.capacidad = a.getCapacidad();
+        this.precioBase = a.getPrecioBase();
+        this.foto = a.getFoto();
+        this.tieneWifi = tieneWifi;
+        this.costoLimpieza = costoLimpieza;
+        this.cantidadHabitaciones = cantidadHabitaciones;
+        this.ubicacion = ubicacion;
+        this.id_departamento=id;
+    }
+
+    public Departamento(UUID uuid, Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, Boolean tieneWifi, Double costoLimpieza, Integer cantidadHabitaciones, Ubicacion ubicacion, String foto) {
+        super(uuid, titulo, descripcion, capacidad, precioBase, foto);
         this.tieneWifi = tieneWifi;
         this.costoLimpieza = costoLimpieza;
         this.cantidadHabitaciones = cantidadHabitaciones;
