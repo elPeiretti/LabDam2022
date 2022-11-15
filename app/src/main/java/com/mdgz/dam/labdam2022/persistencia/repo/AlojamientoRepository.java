@@ -2,19 +2,15 @@ package com.mdgz.dam.labdam2022.persistencia.repo;
 
 import android.content.Context;
 
-import com.mdgz.dam.labdam2022.model.Ciudad;
 import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.AlojamientoDataSource;
 import com.mdgz.dam.labdam2022.persistencia.room.AlojamientoRoomDataSource;
-import com.mdgz.dam.labdam2022.persistencia.room.OnResult;
-import com.mdgz.dam.labdam2022.persistencia.room.dao.AlojamientoDAO;
+import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.OnResult;
 import com.mdgz.dam.labdam2022.model.Alojamiento;
 import com.mdgz.dam.labdam2022.model.Departamento;
 import com.mdgz.dam.labdam2022.model.Habitacion;
 import com.mdgz.dam.labdam2022.model.Hotel;
 import com.mdgz.dam.labdam2022.model.Ubicacion;
-import com.mdgz.dam.labdam2022.persistencia.room.MyDatabase;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +21,7 @@ public class AlojamientoRepository implements AlojamientoDataSource {
 
     public static final List<Ubicacion> _UBICACIONES = List.of(
             new Ubicacion(1,-42.6,-38.3,"San Martin","1989", CiudadRepository._CIUDADES.get(0)),
-            new Ubicacion(2, -42.25,-38.2,"Lopez y Planes","2007", CiudadRepository._CIUDADES.get(0))
+            new Ubicacion(2, -42.25,-38.2,"Lopez y Planes","2007", CiudadRepository._CIUDADES.get(1))
     );
 
     public static final List<Hotel> _HOTELES = List.of(

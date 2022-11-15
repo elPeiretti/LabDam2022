@@ -3,8 +3,6 @@ package com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource;
 import com.mdgz.dam.labdam2022.model.Alojamiento;
 import com.mdgz.dam.labdam2022.model.Departamento;
 import com.mdgz.dam.labdam2022.model.Habitacion;
-import com.mdgz.dam.labdam2022.persistencia.room.OnResult;
-import com.mdgz.dam.labdam2022.persistencia.room.entities.AlojamientoEntity;
 
 import java.util.List;
 

@@ -1,6 +1,8 @@
 package com.mdgz.dam.labdam2022.persistencia.room.mapper;
 
+import com.mdgz.dam.labdam2022.model.Ciudad;
 import com.mdgz.dam.labdam2022.model.Hotel;
+import com.mdgz.dam.labdam2022.persistencia.room.entities.CiudadEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.HotelEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.UbicacionEntity;
 
@@ -9,12 +11,12 @@ import java.util.List;
 
 public class HotelMapper {
 
-    public static Hotel fromEntity(HotelEntity h, UbicacionEntity u) {
+    public static Hotel fromEntity(HotelEntity h, UbicacionEntity u, CiudadEntity c) {
         return new Hotel(
                 h.getId(),
                 h.getNombre(),
                 h.getCategoria(),
-                UbicacionMapper.fromEntity(u)
+                UbicacionMapper.fromEntity(u,c)
         );
     }
 

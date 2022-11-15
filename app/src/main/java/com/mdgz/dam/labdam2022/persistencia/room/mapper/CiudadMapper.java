@@ -11,14 +11,16 @@ public class CiudadMapper {
     public static Ciudad fromEntity(CiudadEntity c) {
         return new Ciudad(
                 c.getNombre(),
-                c.getAbreviatura()
+                c.getAbreviatura(),
+                c.getId()
         );
     }
 
     public static CiudadEntity toEntity(Ciudad c) {
         return new CiudadEntity(
                 c.getNombre(),
-                c.getAbreviatura()
+                c.getAbreviatura(),
+                c.getId()
         );
     }
     public static List<CiudadEntity> toEntities(List<Ciudad> ciudades){

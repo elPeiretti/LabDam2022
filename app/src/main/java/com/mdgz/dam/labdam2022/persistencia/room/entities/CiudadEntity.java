@@ -23,12 +23,14 @@ public class CiudadEntity {
     public CiudadEntity(){}
 
     @Ignore
-    public CiudadEntity(String nombre, String abreviatura) {
+    public CiudadEntity(String nombre, String abreviatura, Integer id) {
         this.nombre = nombre;
         this.abreviatura = abreviatura;
+        this.id = id;
     }
 
 
+    @NonNull
     @Override
     public String toString(){
         return nombre;

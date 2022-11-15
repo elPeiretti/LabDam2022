@@ -3,6 +3,7 @@ package com.mdgz.dam.labdam2022.persistencia.room.mapper;
 import com.mdgz.dam.labdam2022.model.Departamento;
 import com.mdgz.dam.labdam2022.model.Habitacion;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.AlojamientoEntity;
+import com.mdgz.dam.labdam2022.persistencia.room.entities.CiudadEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.DepartamentoEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.HabitacionEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.UbicacionEntity;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class DepartamentoMapper {
 
-    public static Departamento fromEntity(DepartamentoEntity d, AlojamientoEntity a, UbicacionEntity u) {
+    public static Departamento fromEntity(DepartamentoEntity d, AlojamientoEntity a, UbicacionEntity u, CiudadEntity c) {
         return new Departamento(
                 d.getAlojamientoId(),
                 d.getId_departamento(),
@@ -24,7 +25,7 @@ public class DepartamentoMapper {
                 d.getTieneWifi(),
                 d.getCostoLimpieza(),
                 d.getCantidadHabitaciones(),
-                UbicacionMapper.fromEntity(u),
+                UbicacionMapper.fromEntity(u,c),
                 a.getFoto()
         );
     }
@@ -36,7 +37,7 @@ public class DepartamentoMapper {
     public static List<Departamento> fromEntities(List<DepartamentoEntity> dptos){
         List<Departamento> departamentos = new ArrayList<Departamento>();
         for(DepartamentoEntity h: dptos){
-            departamentos.add(DepartamentoMapper.fromEntity(h, h.getAlojamientoEntity(), h.getUbicacionEntity()));
+            departamentos.add(DepartamentoMapper.fromEntity(h, h.getAlojamientoEntity(), h.getUbicacionEntity(), h.getUbicacionEntity().getCiudadEntity()));
         }
         return departamentos;
     }

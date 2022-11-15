@@ -15,11 +15,8 @@ import android.view.ViewGroup;
 import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.databinding.FragmentResultadoBusquedaBinding;
 import com.mdgz.dam.labdam2022.model.Alojamiento;
-import com.mdgz.dam.labdam2022.model.Departamento;
-import com.mdgz.dam.labdam2022.model.Habitacion;
-import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.AlojamientoDataSource;
 import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
-import com.mdgz.dam.labdam2022.persistencia.room.OnResult;
+import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.OnResult;
 
 import java.util.List;
 

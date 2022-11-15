@@ -2,6 +2,7 @@ package com.mdgz.dam.labdam2022.persistencia.room.mapper;
 
 import com.mdgz.dam.labdam2022.model.Habitacion;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.AlojamientoEntity;
+import com.mdgz.dam.labdam2022.persistencia.room.entities.CiudadEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.HabitacionEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.HotelEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.UbicacionEntity;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class HabitacionMapper {
 
-    public static Habitacion fromEntity(HabitacionEntity h, AlojamientoEntity a, HotelEntity hotel, UbicacionEntity u) {
+    public static Habitacion fromEntity(HabitacionEntity h, AlojamientoEntity a, HotelEntity hotel, UbicacionEntity u, CiudadEntity c) {
 
         return new Habitacion(
                 h.getAlojamientoId(),
@@ -24,7 +25,7 @@ public class HabitacionMapper {
                 h.getCamasIndividuales(),
                 h.getCamasMatrimoniales(),
                 h.getTieneEstacionamiento(),
-                HotelMapper.fromEntity(hotel, u),
+                HotelMapper.fromEntity(hotel, u, c),
                 a.getFoto()
         );
     }
@@ -32,7 +33,7 @@ public class HabitacionMapper {
     public static List<Habitacion> fromEntities(List<HabitacionEntity> hab){
         List<Habitacion> habitaciones = new ArrayList<Habitacion>();
         for(HabitacionEntity h: hab){
-            habitaciones.add(HabitacionMapper.fromEntity(h, h.getAlojamientoEntity(), h.getHotelEntity(), h.getHotelEntity().getUbicacionEntity()));
+            habitaciones.add(HabitacionMapper.fromEntity(h, h.getAlojamientoEntity(), h.getHotelEntity(), h.getHotelEntity().getUbicacionEntity(), h.getHotelEntity().getUbicacionEntity().getCiudadEntity()));
         }
         return habitaciones;
     }

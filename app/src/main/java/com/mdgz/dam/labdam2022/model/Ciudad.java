@@ -15,9 +15,7 @@ public class Ciudad implements Parcelable {
     String nombre;
     String abreviatura;
 
-    public Ciudad(){}
-
-    public Ciudad(String nombre, String abreviatura) {
+    public Ciudad(String nombre, String abreviatura, Integer id) {
         this.id = id;
         this.nombre = nombre;
         this.abreviatura = abreviatura;

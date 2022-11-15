@@ -1,4 +1,4 @@
-package com.mdgz.dam.labdam2022.persistencia.room;
+package com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource;
 
 /**
  * Interfaz genérica para respuestas asíncronas.

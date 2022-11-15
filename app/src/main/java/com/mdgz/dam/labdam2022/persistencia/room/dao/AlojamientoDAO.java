@@ -24,6 +24,8 @@ public interface AlojamientoDAO {
     List<HabitacionEntity> loadAllHabitaciones();
     @Query("SELECT * FROM ubicacionentity")
     List<UbicacionEntity> loadAllUbicaciones();
+    @Query("SELECT * FROM ciudadentity")
+    List<CiudadEntity> loadAllCiudades();
 
     @Query("SELECT * FROM hotelentity")
     List<HotelEntity> loadAllHoteles();
@@ -40,4 +42,5 @@ public interface AlojamientoDAO {
     void insertAllHoteles(List<HotelEntity> hoteles);
     @Insert
     void insertAllCiudades(List<CiudadEntity> ciudades);
+
 }

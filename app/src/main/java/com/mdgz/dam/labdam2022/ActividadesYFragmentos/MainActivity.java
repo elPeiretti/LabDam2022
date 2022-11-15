@@ -35,14 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         MyDatabase.getInstance(getApplicationContext());
 
-       /* MyDatabase.getInstance(getApplicationContext()).alojamientoDAO().insertAllCiudades(CiudadMapper.toEntities(CiudadRepository._CIUDADES));
-        MyDatabase.getInstance(getApplicationContext()).alojamientoDAO().insertAllUbicaciones(UbicacionMapper.toEntities(AlojamientoRepository._UBICACIONES));
-        MyDatabase.getInstance(getApplicationContext()).alojamientoDAO().insertAllHoteles(HotelMapper.toEntities(AlojamientoRepository._HOTELES));
-        MyDatabase.getInstance(getApplicationContext()).alojamientoDAO().insertAllAlojamientos(AlojamientoMapper.toEntites(AlojamientoRepository._ALOJAMIENTOS));
-        MyDatabase.getInstance(getApplicationContext()).alojamientoDAO().insertAllDepartamentos(DepartamentoMapper.toEntities(AlojamientoRepository._DEPARTAMENTOS));
-        MyDatabase.getInstance(getApplicationContext()).alojamientoDAO().insertAllHabitaciones(HabitacionMapper.toEntities(AlojamientoRepository._HABITACIONES));
-*/
-
         MaterialToolbar mToolbar = binding.materialToolbar;
         mToolbar.setOnMenuItemClickListener(new MaterialToolbar.OnMenuItemClickListener() {
             @Override

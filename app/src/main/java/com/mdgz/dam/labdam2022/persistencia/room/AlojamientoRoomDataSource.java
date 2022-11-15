@@ -2,19 +2,18 @@ package com.mdgz.dam.labdam2022.persistencia.room;
 
 import android.content.Context;
 
-import com.mdgz.dam.labdam2022.ActividadesYFragmentos.AlojamientoRecyclerAdapter;
 import com.mdgz.dam.labdam2022.model.Alojamiento;
 import com.mdgz.dam.labdam2022.model.Departamento;
 import com.mdgz.dam.labdam2022.model.Habitacion;
-import com.mdgz.dam.labdam2022.model.Hotel;
 import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.AlojamientoDataSource;
+import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.OnResult;
 import com.mdgz.dam.labdam2022.persistencia.room.dao.AlojamientoDAO;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.AlojamientoEntity;
+import com.mdgz.dam.labdam2022.persistencia.room.entities.CiudadEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.DepartamentoEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.HabitacionEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.HotelEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.UbicacionEntity;
-import com.mdgz.dam.labdam2022.persistencia.room.mapper.AlojamientoMapper;
 import com.mdgz.dam.labdam2022.persistencia.room.mapper.DepartamentoMapper;
 import com.mdgz.dam.labdam2022.persistencia.room.mapper.HabitacionMapper;
 
@@ -37,6 +36,14 @@ public class AlojamientoRoomDataSource implements AlojamientoDataSource {
         List<AlojamientoEntity> ae = alojamientoDao.loadAllAlojamientos();
         List<HotelEntity> hoteles = alojamientoDao.loadAllHoteles();
         List<UbicacionEntity> ubicaciones = alojamientoDao.loadAllUbicaciones();
+        List<CiudadEntity> ce = alojamientoDao.loadAllCiudades();
+
+        for(UbicacionEntity u: ubicaciones){
+            for(CiudadEntity c: ce){
+                if (u.getIdCiudad().equals(c.getId()))
+                    u.setCiudadEntity(c);
+            }
+        }
 
         for(HotelEntity h : hoteles){
             for(UbicacionEntity u : ubicaciones){
@@ -72,12 +79,20 @@ public class AlojamientoRoomDataSource implements AlojamientoDataSource {
         List<DepartamentoEntity> de = alojamientoDao.loadAllDepartamentos();
         List<AlojamientoEntity> ae = alojamientoDao.loadAllAlojamientos();
         List<UbicacionEntity> ue = alojamientoDao.loadAllUbicaciones();
+        List<CiudadEntity> ce = alojamientoDao.loadAllCiudades();
 
         for(DepartamentoEntity d : de) {
             for(AlojamientoEntity a: ae){
                 if(d.getAlojamientoId().equals(a.getId())){
                     d.setAlojamientoEntity(a);
                 }
+            }
+        }
+
+        for(UbicacionEntity u: ue){
+            for(CiudadEntity c: ce){
+                if (u.getIdCiudad().equals(c.getId()))
+                    u.setCiudadEntity(c);
             }
         }
 

@@ -32,12 +32,12 @@ public class UbicacionEntity {
 
     public UbicacionEntity(){}
     @Ignore
-    public UbicacionEntity(Integer id, double lat, double lng, String calle, String numero, CiudadEntity ciudadEntity) {
+    public UbicacionEntity(Integer id, double lat, double lng, String calle, String numero, Integer id_ciudad) {
         this.lat = lat;
         this.lng = lng;
         this.calle = calle;
         this.numero = numero;
-        this.ciudadEntity = ciudadEntity;
+        this.idCiudad = id_ciudad;
         this.id = id;
     }
 
@@ -95,11 +95,11 @@ public class UbicacionEntity {
         this.idCiudad = idCiudad;
     }
 
-    public CiudadEntity getCiudad() {
+    public CiudadEntity getCiudadEntity() {
         return ciudadEntity;
     }
 
-    public void setCiudad(CiudadEntity ciudadEntity) {
+    public void setCiudadEntity(CiudadEntity ciudadEntity) {
         this.ciudadEntity = ciudadEntity;
     }
 }

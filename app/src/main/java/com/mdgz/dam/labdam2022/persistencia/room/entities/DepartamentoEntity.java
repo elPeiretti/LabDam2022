@@ -39,21 +39,18 @@ public class DepartamentoEntity {
     @Ignore
     private UbicacionEntity ubicacionEntity;
 
-    public void setUbicacion(Integer ubicacionEntity) {
-        this.id_ubicacion = ubicacionEntity;
-    }
-
     public DepartamentoEntity(){}
 
     @Ignore
-    public DepartamentoEntity(UUID id_aloj, Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, Boolean tieneWifi, Double costoLimpieza, Integer cantidadHabitaciones, Integer ubicacionEntity, String foto) {
+    public DepartamentoEntity(UUID id_aloj, Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, Boolean tieneWifi, Double costoLimpieza, Integer cantidadHabitaciones, Integer id_ubicacion, String foto) {
         this.tieneWifi = tieneWifi;
         this.costoLimpieza = costoLimpieza;
         this.cantidadHabitaciones = cantidadHabitaciones;
-        this.id_ubicacion = ubicacionEntity;
+        this.id_ubicacion = id_ubicacion;
         this.id_departamento = id;
         this.alojamientoId = id_aloj;
     }
+
 
     @NonNull
     public Integer getId_departamento() {
