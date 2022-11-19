@@ -20,11 +20,7 @@ import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.OnResult;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ResultadoBusquedaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ResultadoBusquedaFragment extends Fragment implements OnResult<List<Alojamiento>> {
 
     private RecyclerView recyclerView ;
@@ -46,15 +42,6 @@ public class ResultadoBusquedaFragment extends Fragment implements OnResult<List
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ResultadoBusquedaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ResultadoBusquedaFragment newInstance(String param1, String param2) {
         ResultadoBusquedaFragment fragment = new ResultadoBusquedaFragment();
         Bundle args = new Bundle();
@@ -71,8 +58,6 @@ public class ResultadoBusquedaFragment extends Fragment implements OnResult<List
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
@@ -102,12 +87,10 @@ public class ResultadoBusquedaFragment extends Fragment implements OnResult<List
     @Override
     public void onSuccess(List<Alojamiento> result) {
         mAdapter = new AlojamientoRecyclerAdapter(result, ctx);
-
     }
 
     @Override
     public void onError(Throwable exception) {
-
     }
 
 }

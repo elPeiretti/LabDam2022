@@ -17,11 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.model.Alojamiento;
+import com.mdgz.dam.labdam2022.model.Favorito;
+import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.FavoritoDataSource;
+import com.mdgz.dam.labdam2022.persistencia.repo.FavoritoRepository;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<AlojamientoRecyclerAdapter.AlojamientoViewHolder> {
+public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<AlojamientoRecyclerAdapter.AlojamientoViewHolder> implements FavoritoDataSource.SaveFavoritoCallback, FavoritoDataSource.RemoveFavoritoCallback{
     private final Context context;
     private List<Alojamiento> alojamientoDataSet;
 
@@ -55,11 +58,39 @@ public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<Alojamiento
             }
         });
 
+
+        // agregar o eliminar favoritos
+        FavoritoDataSource.SaveFavoritoCallback insertCtx = this;
+        FavoritoDataSource.RemoveFavoritoCallback removeCtx = this;
+
+        holder.favorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Alojamiento aloj = alojamientoDataSet.get(holder.getLayoutPosition());
+                Favorito fav = aloj.getFavorito();
+                if (fav == null) {
+                    FavoritoRepository.createInstance(context).saveFavorito(insertCtx, fav);
+                    holder.favorito.setActivated(true);
+                }
+                else{
+                    holder.favorito.setActivated(false);
+                    FavoritoRepository.createInstance(context).removeFavorito(removeCtx, fav);
+                    aloj.setFavorito(null);
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return alojamientoDataSet.size();
+    }
+
+    @Override
+    public void onError() {}
+
+    @Override
+    public void onResult() {
     }
 
     public class AlojamientoViewHolder extends RecyclerView.ViewHolder{

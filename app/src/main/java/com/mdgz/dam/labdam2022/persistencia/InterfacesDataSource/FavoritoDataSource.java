@@ -14,7 +14,12 @@ public interface FavoritoDataSource {
         void onError();
         void onResult();
     }
+    interface RemoveFavoritoCallback{
+        void onError();
+        void onResult();
+    }
 
     void getAllFavoritos(FavoritoDataSource.GetAllFavortosCallback callback);
     void saveFavorito(FavoritoDataSource.SaveFavoritoCallback callback, Favorito fav);
+    void removeFavorito(FavoritoDataSource.RemoveFavoritoCallback callback, Favorito fav);
 }

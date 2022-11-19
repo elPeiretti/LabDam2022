@@ -32,4 +32,10 @@ public class FavoritoRoomDataSource implements FavoritoDataSource {
         favoritoDAO.insertFavorito(FavoritoMapper.toEntity(fav));
         callback.onResult();
     }
+
+    @Override
+    public void removeFavorito(RemoveFavoritoCallback callback, Favorito fav) {
+        favoritoDAO.deleteFavorito(FavoritoMapper.toEntity(fav));
+        callback.onResult();
+    }
 }
