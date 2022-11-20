@@ -2,6 +2,7 @@ package com.mdgz.dam.labdam2022.ActividadesYFragmentos;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,13 +25,17 @@ import com.mdgz.dam.labdam2022.persistencia.repo.FavoritoRepository;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<AlojamientoRecyclerAdapter.AlojamientoViewHolder> implements FavoritoDataSource.SaveFavoritoCallback, FavoritoDataSource.RemoveFavoritoCallback{
-    private final Context context;
+    private Context context;
     private List<Alojamiento> alojamientoDataSet;
+    private List<Favorito> favoritoDataSet;
 
-    public AlojamientoRecyclerAdapter(List<Alojamiento> myDataSet, Context context){
+    public AlojamientoRecyclerAdapter(List<Alojamiento> myDataSet, List<Favorito> favoritos, Context context){
         alojamientoDataSet = myDataSet;
+        favoritoDataSet = favoritos;
         this.context = context;
     }
 
@@ -67,15 +73,21 @@ public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<Alojamiento
             @Override
             public void onClick(View view) {
                 Alojamiento aloj = alojamientoDataSet.get(holder.getLayoutPosition());
-                Favorito fav = aloj.getFavorito();
-                if (fav == null) {
+
+                List<Favorito> favs = favoritoDataSet.stream()
+                                            .filter(f -> f.getAlojamientoID()
+                                            .equals(aloj.getId()))
+                                            .collect(Collectors.toList());
+                if (favs.isEmpty()) {
+                    Favorito fav = new Favorito(aloj.getId(), UUID.fromString("50e8400-e29b-41d4-a716-446655440000"));
                     FavoritoRepository.createInstance(context).saveFavorito(insertCtx, fav);
-                    holder.favorito.setActivated(true);
+                    holder.favorito.setBackground(ContextCompat.getDrawable(holder.favorito.getContext(), android.R.drawable.star_on));
+                    favoritoDataSet.add(fav);
                 }
                 else{
-                    holder.favorito.setActivated(false);
-                    FavoritoRepository.createInstance(context).removeFavorito(removeCtx, fav);
-                    aloj.setFavorito(null);
+                    holder.favorito.setBackground(ContextCompat.getDrawable(holder.favorito.getContext(),android.R.drawable.star_off));
+                    FavoritoRepository.createInstance(context).removeFavorito(removeCtx, favs.get(0));
+                    favoritoDataSet.remove(favs.get(0));
                 }
             }
         });

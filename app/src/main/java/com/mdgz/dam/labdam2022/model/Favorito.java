@@ -17,6 +17,12 @@ public class Favorito {
         this.usuarioID = usuarioID;
     }
 
+    public Favorito(UUID alojamientoID, UUID usuarioID){
+        this.id = id;
+        this.alojamientoID = alojamientoID;
+        this.usuarioID = usuarioID;
+    }
+
     @NonNull
     public Integer getId() {
         return id;

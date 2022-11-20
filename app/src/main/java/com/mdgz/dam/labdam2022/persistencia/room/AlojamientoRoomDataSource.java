@@ -11,6 +11,7 @@ import com.mdgz.dam.labdam2022.persistencia.room.dao.AlojamientoDAO;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.AlojamientoEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.CiudadEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.DepartamentoEntity;
+import com.mdgz.dam.labdam2022.persistencia.room.entities.FavoritoEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.HabitacionEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.HotelEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.UbicacionEntity;
