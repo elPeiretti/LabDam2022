@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 public interface FavoritoService {
 
-    @GET("reserva/")
+    @GET("favorito/")
     Call<List<FavoritoRF>> getAllFavoritos();
 
 }

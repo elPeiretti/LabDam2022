@@ -13,6 +13,7 @@ import com.mdgz.dam.labdam2022.persistencia.retrofit.mapper.FavoritoMapper;
 import java.io.IOException;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,10 +26,14 @@ public class FavoritoRetrofitDataSource implements FavoritoDataSource{
 
     public FavoritoRetrofitDataSource(){
         Gson gson = new GsonBuilder().setLenient().create();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new BasicAuthInterceptor("EFP","CONTRASENA"))
+                .build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://dam-recordatorio-favoritos-api.duckdns.org")
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
                 .build();
 
         favoritoService = retrofit.create(FavoritoService.class);
@@ -37,7 +42,6 @@ public class FavoritoRetrofitDataSource implements FavoritoDataSource{
 
     @Override
     public void getAllFavoritos(GetAllFavoritosCallback callback) {
-
         Call<List<FavoritoRF>> reqAsyn = favoritoService.getAllFavoritos();
 
         reqAsyn.enqueue(new Callback<List<FavoritoRF>>() {
@@ -52,6 +56,7 @@ public class FavoritoRetrofitDataSource implements FavoritoDataSource{
 
             @Override
             public void onFailure(Call<List<FavoritoRF>> call, Throwable t) {
+                Log.i("data","ERRRRRRORRRR");
                 callback.onError();
             }
         });
