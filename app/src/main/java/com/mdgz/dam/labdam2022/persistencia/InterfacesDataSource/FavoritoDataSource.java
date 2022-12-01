@@ -3,6 +3,7 @@ package com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource;
 import com.mdgz.dam.labdam2022.model.Favorito;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface FavoritoDataSource {
     interface GetAllFavoritosCallback {
@@ -20,5 +21,5 @@ public interface FavoritoDataSource {
 
     void getAllFavoritos(GetAllFavoritosCallback callback);
     void saveFavorito(FavoritoDataSource.SaveFavoritoCallback callback, Favorito fav);
-    void removeFavorito(FavoritoDataSource.RemoveFavoritoCallback callback, Favorito fav);
+    void removeFavorito(RemoveFavoritoCallback callback, UUID alojamientoId);
 }

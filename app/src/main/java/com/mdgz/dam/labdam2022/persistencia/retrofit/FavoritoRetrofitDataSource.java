@@ -10,8 +10,8 @@ import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.FavoritoDataSou
 import com.mdgz.dam.labdam2022.persistencia.retrofit.interfaces.FavoritoService;
 import com.mdgz.dam.labdam2022.persistencia.retrofit.mapper.FavoritoMapper;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -86,7 +86,21 @@ public class FavoritoRetrofitDataSource implements FavoritoDataSource{
     }
 
     @Override
-    public void removeFavorito(RemoveFavoritoCallback callback, Favorito fav) {
+    public void removeFavorito(RemoveFavoritoCallback callback, UUID alojamientoId) {
+        Call<FavoritoRF> reqAsyn = favoritoService.removeFavorito(alojamientoId.toString());
+        reqAsyn.enqueue(new Callback<FavoritoRF>() {
+            @Override
+            public void onResponse(Call<FavoritoRF> call, Response<FavoritoRF> response) {
+                if(response.code()==200)
+                    callback.onResult();
+                else
+                    callback.onError();
+            }
 
+            @Override
+            public void onFailure(Call<FavoritoRF> call, Throwable t) {
+                callback.onError();
+            }
+        });
     }
 }
