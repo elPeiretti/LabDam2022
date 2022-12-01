@@ -29,4 +29,9 @@ public class FavoritoRepository implements FavoritoDataSource {
     public void saveFavorito(SaveFavoritoCallback callback, Favorito fav) {
         favoritoDataSource.saveFavorito(callback,fav);
     }
+
+    @Override
+    public void removeFavorito(RemoveFavoritoCallback callback, Favorito fav) {
+        favoritoDataSource.removeFavorito(callback,fav);
+    }
 }

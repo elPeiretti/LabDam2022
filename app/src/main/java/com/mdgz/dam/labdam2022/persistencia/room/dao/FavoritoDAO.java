@@ -1,6 +1,7 @@
 package com.mdgz.dam.labdam2022.persistencia.room.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -18,5 +19,8 @@ public interface FavoritoDAO {
 
     @Insert
     void insertFavorito(FavoritoEntity fav);
+
+    @Delete
+    void deleteFavorito(FavoritoEntity fav);
 
 }

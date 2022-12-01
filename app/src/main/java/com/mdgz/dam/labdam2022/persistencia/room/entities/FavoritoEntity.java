@@ -3,12 +3,16 @@ package com.mdgz.dam.labdam2022.persistencia.room.entities;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.UUID;
 
-@Entity()
+@Entity(foreignKeys = {
+        @ForeignKey(entity = AlojamientoEntity.class, parentColumns = "ID_ALOJAMIENTO", childColumns = "ID_ALOJAMIENTO",
+                onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE)
+})
 public class FavoritoEntity {
 
     @PrimaryKey (autoGenerate = true)
@@ -20,9 +24,9 @@ public class FavoritoEntity {
     @ColumnInfo(name="ID_USUARIO")
     private UUID usuarioID;
 
-    @Ignore
-    public FavoritoEntity(){}
 
+    public FavoritoEntity(){}
+    @Ignore
     public FavoritoEntity(Integer id, UUID alojamientoID, UUID usuarioID){
         this.id = id;
         this.alojamientoID = alojamientoID;
