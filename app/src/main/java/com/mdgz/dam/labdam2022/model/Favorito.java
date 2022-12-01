@@ -18,7 +18,6 @@ public class Favorito {
     }
 
     public Favorito(UUID alojamientoID, UUID usuarioID){
-        this.id = id;
         this.alojamientoID = alojamientoID;
         this.usuarioID = usuarioID;
     }
