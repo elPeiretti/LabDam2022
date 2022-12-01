@@ -1,10 +1,9 @@
-package com.mdgz.dam.labdam2022;
+package com.mdgz.dam.labdam2022.ActividadesYFragmentos;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,29 +71,11 @@ public class VistaArchivoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = FragmentVistaArchivoBinding.inflate(inflater, container, false);
-        recuperarArchivo2();
+        recuperarArchivo();
         return binding.getRoot();
     }
 
     public void recuperarArchivo(){
-        try{
-            FileInputStream mInput = getContext().openFileInput("RegistroBusquedas.txt");
-            byte[]data = new byte[128];
-            StringBuilder sb = new StringBuilder();
-            while(mInput.read(data)!=-1){
-                sb.append(new String(data));
-            }
-            Log.i("Data", sb.toString());
-            binding.tvContenido.setText(sb.toString());
-            mInput.close();
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
-    public void recuperarArchivo2(){
 
         FileInputStream mInput = null;
         try {

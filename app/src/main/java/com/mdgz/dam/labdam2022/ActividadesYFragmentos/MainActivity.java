@@ -1,24 +1,27 @@
-package com.mdgz.dam.labdam2022;
+package com.mdgz.dam.labdam2022.ActividadesYFragmentos;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toolbar;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.mdgz.dam.labdam2022.R;
 import com.mdgz.dam.labdam2022.databinding.ActivityMainBinding;
+import com.mdgz.dam.labdam2022.persistencia.repo.AlojamientoRepository;
+import com.mdgz.dam.labdam2022.persistencia.repo.CiudadRepository;
+import com.mdgz.dam.labdam2022.persistencia.room.MyDatabase;
+import com.mdgz.dam.labdam2022.persistencia.room.mapper.AlojamientoMapper;
+import com.mdgz.dam.labdam2022.persistencia.room.mapper.CiudadMapper;
+import com.mdgz.dam.labdam2022.persistencia.room.mapper.DepartamentoMapper;
+import com.mdgz.dam.labdam2022.persistencia.room.mapper.HabitacionMapper;
+import com.mdgz.dam.labdam2022.persistencia.room.mapper.HotelMapper;
+import com.mdgz.dam.labdam2022.persistencia.room.mapper.UbicacionMapper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        MyDatabase.getInstance(getApplicationContext());
 
         MaterialToolbar mToolbar = binding.materialToolbar;
         mToolbar.setOnMenuItemClickListener(new MaterialToolbar.OnMenuItemClickListener() {

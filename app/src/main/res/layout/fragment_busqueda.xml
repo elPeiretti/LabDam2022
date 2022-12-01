@@ -16,7 +16,7 @@
     android:paddingLeft="5dp"
     android:paddingTop="5dp"
     android:paddingRight="5dp"
-    tools:context=".BusquedaFragment">
+    tools:context=".ActividadesYFragmentos.BusquedaFragment">
 
     <CheckBox
         android:id="@+id/cb_hoteles"

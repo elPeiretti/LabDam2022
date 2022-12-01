@@ -1,38 +1,43 @@
-package com.mdgz.dam.labdam2022.model;
+package com.mdgz.dam.labdam2022.persistencia.room.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.UUID;
 
+@Entity()
+public class AlojamientoEntity {
 
-public abstract class Alojamiento implements Parcelable{
-
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "ID_ALOJAMIENTO")
     protected UUID id;
+    @ColumnInfo(name = "TITULO")
     protected String titulo;
+    @ColumnInfo(name = "DESCRIPCION")
     protected String descripcion;
+    @ColumnInfo(name = "CAPACIDAD")
     protected Integer capacidad;
+    @ColumnInfo(name = "PRECIO")
     protected Double precioBase;
+    @ColumnInfo(name = "FOTO")
     protected String foto;
-    protected Favorito fav;
 
-    public Alojamiento(Parcel in) {
-        titulo = in.readString();
-        descripcion = in.readString();
-        capacidad = in.readInt();
-        precioBase = in.readDouble();
-        foto = in.readString();
-    }
-
-    public abstract Ubicacion getUbicacion();
     public Double costoDia(){
         return precioBase;
     }
 
-    public Alojamiento(){}
+    public AlojamientoEntity(){}
 
-    public Alojamiento(UUID id, String titulo, String descripcion, Integer capacidad,
-                       Double precioBase, String foto) {
+    @Ignore
+    public AlojamientoEntity(UUID id, String titulo, String descripcion, Integer capacidad,
+                             Double precioBase, String foto) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -41,23 +46,16 @@ public abstract class Alojamiento implements Parcelable{
         this.foto = foto;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i){
-        parcel.writeString(titulo);
-        parcel.writeInt(capacidad);
-        parcel.writeDouble(precioBase);
-        parcel.writeString(foto);
-    }
-
     public String getCaracteristicas(){
         return descripcion+".\nCapacidad: "+capacidad+" personas.\nPrecio base: $"+precioBase.toString()+".\n";
     }
 
+    @NonNull
     public UUID getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(@NonNull UUID id) {
         this.id = id;
     }
 
@@ -100,12 +98,4 @@ public abstract class Alojamiento implements Parcelable{
     public void setFoto(String foto) {
         this.foto = foto;
     }
-
-    public Favorito getFavorito(){
-        return fav;
-    };
-
-    public void setFavorito(Favorito fav){
-        this.fav = fav;
-    };
 }

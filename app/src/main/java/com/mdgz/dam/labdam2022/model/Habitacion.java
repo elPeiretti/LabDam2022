@@ -1,12 +1,13 @@
 package com.mdgz.dam.labdam2022.model;
 
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.Html;
+
+import java.util.UUID;
 
 public class Habitacion  extends Alojamiento {
 
+    protected Integer id_habitacion;
     private int camasIndividuales;
     private int camasMatrimoniales;
     private Boolean tieneEstacionamiento;
@@ -37,20 +38,35 @@ public class Habitacion  extends Alojamiento {
                 }
             };
 
-    public Habitacion(Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, int camasIndividuales, int camasMatrimoniales, Boolean tieneEstacionamiento, Hotel hotel, String foto) {
-        super(id, titulo, descripcion, capacidad, precioBase,foto);
+    public Habitacion(Alojamiento a, Integer id, int camasIndividuales, int camasMatrimoniales, Boolean tieneEstacionamiento, Hotel hotel){
+        this.id = a.getId();
+        this.titulo = a.getTitulo();
+        this.descripcion= a.getDescripcion();
+        this.precioBase = a.getPrecioBase();
+        this.capacidad= a.getCapacidad();
+        this.foto = a.getFoto();
         this.camasIndividuales = camasIndividuales;
         this.camasMatrimoniales = camasMatrimoniales;
         this.tieneEstacionamiento = tieneEstacionamiento;
         this.hotel = hotel;
+        this.id_habitacion = id;
     }
 
-    public Integer getId() {
-        return id;
+    public Habitacion(UUID uuid, Integer id, String titulo, String descripcion, Integer capacidad, Double precioBase, int camasIndividuales, int camasMatrimoniales, Boolean tieneEstacionamiento, Hotel hotel, String foto) {
+        super(uuid, titulo, descripcion, capacidad, precioBase,foto);
+        this.camasIndividuales = camasIndividuales;
+        this.camasMatrimoniales = camasMatrimoniales;
+        this.tieneEstacionamiento = tieneEstacionamiento;
+        this.hotel = hotel;
+        this.id_habitacion = id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getId_habitacion() {
+        return id_habitacion;
+    }
+
+    public void setId_habitacion(Integer id) {
+        this.id_habitacion = id;
     }
 
     public int getCamasIndividuales() {

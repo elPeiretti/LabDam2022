@@ -3,14 +3,19 @@ package com.mdgz.dam.labdam2022.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+
 public class Ciudad implements Parcelable {
+
     Integer id;
     String nombre;
     String abreviatura;
 
-    public Ciudad(){}
-
-    public Ciudad(Integer id, String nombre, String abreviatura) {
+    public Ciudad(String nombre, String abreviatura, Integer id) {
         this.id = id;
         this.nombre = nombre;
         this.abreviatura = abreviatura;
