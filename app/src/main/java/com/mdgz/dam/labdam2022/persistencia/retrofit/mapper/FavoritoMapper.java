@@ -12,10 +12,18 @@ public class FavoritoMapper {
         return entities.stream().map(FavoritoMapper::fromEntity).collect(Collectors.toList());
     }
 
-    public static Favorito fromEntity(FavoritoRF fav){
-        return new Favorito(
-                UUID.fromString(fav.getAlojamientoID()),
-                UUID.fromString(fav.getUsuarioID())
+    public static FavoritoRF toEntity(Favorito fav){
+        return new FavoritoRF(
+                fav.getAlojamientoID().toString(),
+                fav.getUsuarioID().toString()
         );
     }
+
+    public static Favorito fromEntity(FavoritoRF fav){
+        return new Favorito(
+                UUID.fromString(fav.getAlojamientoId()),
+                UUID.fromString(fav.getUsuarioId())
+        );
+    }
+
 }

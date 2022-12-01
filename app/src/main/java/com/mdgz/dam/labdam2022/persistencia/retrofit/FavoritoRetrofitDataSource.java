@@ -32,8 +32,8 @@ public class FavoritoRetrofitDataSource implements FavoritoDataSource{
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://dam-recordatorio-favoritos-api.duckdns.org")
-                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         favoritoService = retrofit.create(FavoritoService.class);
@@ -47,10 +47,12 @@ public class FavoritoRetrofitDataSource implements FavoritoDataSource{
         reqAsyn.enqueue(new Callback<List<FavoritoRF>>() {
             @Override
             public void onResponse(Call<List<FavoritoRF>> call, Response<List<FavoritoRF>> response) {
-                if(response.code() == 200) {
+                if (response.code() == 200) {
                     List<FavoritoRF> data = response.body();
-                    Log.i("data",String.valueOf(data.size()));
                     callback.onResult(FavoritoMapper.fromEntities(data));
+                }
+                else{
+                    callback.onError();
                 }
             }
 
@@ -65,7 +67,22 @@ public class FavoritoRetrofitDataSource implements FavoritoDataSource{
 
     @Override
     public void saveFavorito(SaveFavoritoCallback callback, Favorito fav) {
+        Call<FavoritoRF> reqAsyn = favoritoService.saveFavorito(FavoritoMapper.toEntity(fav));
+        reqAsyn.enqueue(new Callback<FavoritoRF>() {
+           @Override
+           public void onResponse(Call<FavoritoRF> call, Response<FavoritoRF> response) {
+               if(response.code() == 200)
+                   callback.onResult();
+               else{
+                   callback.onError();
+               }
+           }
 
+           @Override
+           public void onFailure(Call<FavoritoRF> call, Throwable t) {
+                callback.onError();
+           }
+        });
     }
 
     @Override

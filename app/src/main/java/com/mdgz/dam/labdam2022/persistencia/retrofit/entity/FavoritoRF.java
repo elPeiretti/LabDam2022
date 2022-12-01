@@ -3,20 +3,20 @@ package com.mdgz.dam.labdam2022.persistencia.retrofit.entity;
 import java.util.UUID;
 
 public class FavoritoRF {
-    private String alojamientoID;
-    private String usuarioID;
+    private String alojamientoId;
+    private String usuarioId;
 
     public FavoritoRF(){}
-    public FavoritoRF(String alojID, String userID){
-        this.alojamientoID = alojID;
-        this.usuarioID = userID;
+    public FavoritoRF(String alojId, String userId){
+        this.alojamientoId = alojId;
+        this.usuarioId = userId;
     }
 
-    public String getAlojamientoID() {
-        return alojamientoID;
+    public String getAlojamientoId() {
+        return alojamientoId;
     }
 
-    public String getUsuarioID() {
-        return usuarioID;
+    public String getUsuarioId() {
+        return usuarioId;
     }
 }
