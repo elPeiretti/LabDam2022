@@ -24,9 +24,9 @@ import com.mdgz.dam.labdam2022.persistencia.repo.FavoritoRepository;
 import java.util.List;
 
 
-public class ResultadoBusquedaFragment extends Fragment implements OnResult<List<Alojamiento>>, FavoritoDataSource.GetAllFavortosCallback {
+public class ResultadoBusquedaFragment extends Fragment implements OnResult<List<Alojamiento>> {
 
-    private RecyclerView recyclerView ;
+    private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private Context ctx = this.getContext();
@@ -82,7 +82,6 @@ public class ResultadoBusquedaFragment extends Fragment implements OnResult<List
         layoutManager = new LinearLayoutManager(ctx);
         recyclerView.setLayoutManager(layoutManager);
         //para cargar los alojamientos
-        FavoritoRepository.createInstance(ctx).getAllFavoritos(this);
         AlojamientoRepository.createInstance(ctx).getAllAlojamientos(this);
         recyclerView.setAdapter(mAdapter);
         return binding.getRoot();
@@ -91,20 +90,11 @@ public class ResultadoBusquedaFragment extends Fragment implements OnResult<List
 
     @Override
     public void onSuccess(List<Alojamiento> result) {
-        mAdapter = new AlojamientoRecyclerAdapter(result, favoritos ,ctx);
+        mAdapter = new AlojamientoRecyclerAdapter(result, ctx);
     }
 
     @Override
     public void onError(Throwable exception) {
     }
 
-    @Override
-    public void onError() {
-
-    }
-
-    @Override
-    public void onResult(List<Favorito> favs) {
-        favoritos = favs;
-    }
 }
