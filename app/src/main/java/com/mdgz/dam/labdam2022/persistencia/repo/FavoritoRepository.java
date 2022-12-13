@@ -18,7 +18,7 @@ public class FavoritoRepository implements FavoritoDataSource {
         this.favoritoDataSource = favoritoDataSource;
     }
 
-    public static FavoritoDataSource createInstance(Context ctx) {
+    public static FavoritoDataSource createInstance() {
         return new FavoritoRepository(new FavoritoRetrofitDataSource());
     }
 

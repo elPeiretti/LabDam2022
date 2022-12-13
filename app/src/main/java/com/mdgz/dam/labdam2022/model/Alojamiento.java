@@ -15,6 +15,7 @@ public abstract class Alojamiento implements Parcelable{
     protected Double precioBase;
     protected String foto;
     protected Favorito fav;
+    protected boolean esFav = false;
 
     public Alojamiento(Parcel in) {
         titulo = in.readString();
@@ -107,5 +108,13 @@ public abstract class Alojamiento implements Parcelable{
 
     public void setFavorito(Favorito fav){
         this.fav = fav;
+    };
+
+    public boolean esFav(){
+        return esFav;
+    };
+
+    public void setEsFav(boolean b){
+        this.esFav = b;
     };
 }
