@@ -26,7 +26,7 @@ public class ReservaMapper {
         return new ReservaEntity(
                 r.getId(),
                 r.getFechaIngreso(),
-                r.getFechaEgreso(),
+                r.getFechaSalida(),
                 r.getCancelada(),
                 r.getMonto(),
                 r.getAlojamientoId(),
