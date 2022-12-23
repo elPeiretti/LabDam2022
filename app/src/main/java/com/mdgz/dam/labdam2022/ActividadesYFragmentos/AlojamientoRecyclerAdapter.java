@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<AlojamientoRecyclerAdapter.AlojamientoViewHolder> {
+public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<AlojamientoRecyclerAdapter.AlojamientoViewHolder> implements FavoritoDataSource.SaveFavoritoCallback, FavoritoDataSource.RemoveFavoritoCallback {
     private Context context;
     private List<Alojamiento> alojamientoDataSet;
 
@@ -62,6 +62,33 @@ public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<Alojamiento
             }
         });
 
+        ImageButton ibFavorito = holder.favorito;
+        AlojamientoRecyclerAdapter ctx = this;
+
+        ibFavorito.setImageDrawable(
+                alojamientoDataSet.get(holder.getLayoutPosition()).esFav()?
+                        ContextCompat.getDrawable(ibFavorito.getContext(),android.R.drawable.btn_star_big_on) :
+                        ContextCompat.getDrawable(ibFavorito.getContext(),android.R.drawable.btn_star_big_off)
+        );
+
+        ibFavorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Alojamiento opt = alojamientoDataSet.get(holder.getLayoutPosition());
+                if (opt.esFav()){
+                    FavoritoRepository.createInstance().removeFavorito(ctx, opt.getId());
+                    opt.setEsFav(false);
+                    ibFavorito.setImageDrawable(ContextCompat.getDrawable(ibFavorito.getContext(),android.R.drawable.btn_star_big_off));
+                }
+                else{
+                    FavoritoRepository.createInstance().saveFavorito(ctx,new Favorito(opt.getId(),UUID.fromString("550e8400-e29b-41d4-a716-446655440000")));
+                    opt.setEsFav(true);
+                    ibFavorito.setImageDrawable(ContextCompat.getDrawable(ibFavorito.getContext(),android.R.drawable.btn_star_big_on));
+                }
+
+            }
+        });
+
     }
 
     @Override
@@ -84,5 +111,11 @@ public class AlojamientoRecyclerAdapter extends RecyclerView.Adapter<Alojamiento
         }
     }
 
+    @Override
+    public void onError() {
+    }
 
+    @Override
+    public void onResult() {
+    }
 }

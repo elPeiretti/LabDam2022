@@ -1,6 +1,7 @@
 package com.mdgz.dam.labdam2022.ActividadesYFragmentos;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 
 
@@ -23,18 +24,25 @@ import com.mdgz.dam.labdam2022.databinding.FragmentBusquedaBinding;
 import com.mdgz.dam.labdam2022.databinding.FragmentDetalleAlojamientoBinding;
 import com.mdgz.dam.labdam2022.databinding.FragmentResultadoBusquedaBinding;
 import com.mdgz.dam.labdam2022.model.Alojamiento;
+import com.mdgz.dam.labdam2022.model.Reserva;
+import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.ReservaDataSource;
+import com.mdgz.dam.labdam2022.persistencia.repo.ReservaRepository;
 import com.squareup.picasso.Picasso;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link DetalleAlojamientoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DetalleAlojamientoFragment extends Fragment {
+public class DetalleAlojamientoFragment extends Fragment implements ReservaDataSource.SaveReservaCallback{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,6 +54,8 @@ public class DetalleAlojamientoFragment extends Fragment {
     private ImageButton pickInicio;
     private EditText editFechaFin;
     private ImageButton pickFin;
+
+    private Alojamiento aloj;
 
     private DetalleAlojamientoFragment ctx;
 
@@ -94,12 +104,13 @@ public class DetalleAlojamientoFragment extends Fragment {
         Bundle data = getArguments();
         binding.tvDetalle.setText(data.getString("descripcion"));
 
-        Alojamiento aloj = getArguments().getParcelable("alojamiento");
+       aloj = getArguments().getParcelable("alojamiento");
         binding.tvTitulo.setText(aloj.getTitulo());
         binding.tvCaracteristicas.setText(aloj.getCaracteristicas());
         Picasso.get().load(aloj.getFoto()).into(binding.ivImagenAlojamientoDetalle);
         binding.sbCantPersonas.setMax(aloj.getCapacidad());
 
+        DetalleAlojamientoFragment det = this;
         binding.btnReservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,17 +118,10 @@ public class DetalleAlojamientoFragment extends Fragment {
                 LocalDate inicio = LocalDate.parse(binding.fechInicio.getText().toString(),dtf);
                 LocalDate fin = LocalDate.parse(binding.fechFin.getText().toString(),dtf);
 
-                Integer cantDias = (fin.getDayOfYear() - inicio.getDayOfYear())+365*(fin.getYear()-inicio.getYear());
+                Reserva nueva = new Reserva(aloj.getId(), UUID.fromString("0000defa-0000-4f03-b572-7e59d26007fe"),  inicio.atStartOfDay(ZoneId.systemDefault()).toInstant(), fin.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(ctx.getContext());
-                builder.setTitle("Reserva realizada con éxito");
-                builder.setMessage("Su reserva en "+aloj.getTitulo()+" por "+
-                        cantDias.toString()+" días para "+binding.sbCantPersonas.getProgress()+
-                        " personas fue registrada correctamente. ");
-                builder.setPositiveButton("Continuar",null);
-                builder.create().show();
+                ReservaRepository.createInstance().saveReserva(det, nueva);
 
-                NavHostFragment.findNavController(DetalleAlojamientoFragment.this).navigate(R.id.action_detalleAlojamientoFragment_to_busquedaFragment);
             }
         });
 
@@ -212,4 +216,26 @@ public class DetalleAlojamientoFragment extends Fragment {
         outState.putBoolean("btnReservar",binding.btnReservar.isEnabled());
     }
 
+    @Override
+    public void onError() {
+
+    }
+
+    @Override
+    public void onResult() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d[d]-MM-yyyy");
+        LocalDate inicio = LocalDate.parse(binding.fechInicio.getText().toString(),dtf);
+        LocalDate fin = LocalDate.parse(binding.fechFin.getText().toString(),dtf);
+
+        Integer cantDias = (fin.getDayOfYear() - inicio.getDayOfYear())+365*(fin.getYear()-inicio.getYear());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx.getContext());
+        builder.setTitle("Reserva realizada con éxito");
+        builder.setMessage("Su reserva en "+aloj.getTitulo()+" por "+
+                cantDias.toString()+" días para "+binding.sbCantPersonas.getProgress()+
+                " personas fue registrada correctamente. ");
+        builder.setPositiveButton("Continuar",null);
+        builder.create().show();
+        NavHostFragment.findNavController(DetalleAlojamientoFragment.this).navigate(R.id.action_detalleAlojamientoFragment_to_busquedaFragment);
+    }
 }

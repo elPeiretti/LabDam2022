@@ -11,6 +11,7 @@ import com.mdgz.dam.labdam2022.persistencia.room.mapper.ReservaMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ReservaRoomDataSource implements ReservaDataSource {
 
@@ -33,5 +34,10 @@ public class ReservaRoomDataSource implements ReservaDataSource {
     public void saveReserva(SaveReservaCallback callback, Reserva r) {
         reservaDAO.insertReserva(ReservaMapper.toEntity(r));
         callback.onResult();
+    }
+    @Override
+    public void removeReserva(RemoveReservaCallback callback, UUID reservaId) {
+        //TODO
+        callback.onError();
     }
 }

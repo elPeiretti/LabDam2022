@@ -8,8 +8,8 @@ import com.mdgz.dam.labdam2022.persistencia.room.dao.FavoritoDAO;
 import com.mdgz.dam.labdam2022.persistencia.room.entities.FavoritoEntity;
 import com.mdgz.dam.labdam2022.persistencia.room.mapper.FavoritoMapper;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class FavoritoRoomDataSource implements FavoritoDataSource {
 
@@ -22,7 +22,7 @@ public class FavoritoRoomDataSource implements FavoritoDataSource {
 
 
     @Override
-    public void getAllFavoritos(GetAllFavortosCallback callback) {
+    public void getAllFavoritos(GetAllFavoritosCallback callback) {
         List<FavoritoEntity> favs = favoritoDAO.loadAllFavoritos();
         callback.onResult(FavoritoMapper.fromEntities(favs));
     }
@@ -34,8 +34,8 @@ public class FavoritoRoomDataSource implements FavoritoDataSource {
     }
 
     @Override
-    public void removeFavorito(RemoveFavoritoCallback callback, Favorito fav) {
-        favoritoDAO.deleteFavorito(FavoritoMapper.toEntity(fav));
-        callback.onResult();
+    public void removeFavorito(RemoveFavoritoCallback callback, UUID alojamientoId) {
+        //TODO
+        callback.onError();
     }
 }

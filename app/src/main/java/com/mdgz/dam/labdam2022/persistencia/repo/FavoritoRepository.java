@@ -4,7 +4,9 @@ import android.content.Context;
 
 import com.mdgz.dam.labdam2022.model.Favorito;
 import com.mdgz.dam.labdam2022.persistencia.InterfacesDataSource.FavoritoDataSource;
-import com.mdgz.dam.labdam2022.persistencia.room.FavoritoRoomDataSource;
+import com.mdgz.dam.labdam2022.persistencia.retrofit.FavoritoRetrofitDataSource;
+
+import java.util.UUID;
 
 public class FavoritoRepository implements FavoritoDataSource {
 
@@ -16,12 +18,12 @@ public class FavoritoRepository implements FavoritoDataSource {
         this.favoritoDataSource = favoritoDataSource;
     }
 
-    public static FavoritoDataSource createInstance(Context ctx) {
-        return new FavoritoRepository(new FavoritoRoomDataSource(ctx));
+    public static FavoritoDataSource createInstance() {
+        return new FavoritoRepository(new FavoritoRetrofitDataSource());
     }
 
     @Override
-    public void getAllFavoritos(GetAllFavortosCallback callback) {
+    public void getAllFavoritos(GetAllFavoritosCallback callback) {
         favoritoDataSource.getAllFavoritos(callback);
     }
 
@@ -31,7 +33,7 @@ public class FavoritoRepository implements FavoritoDataSource {
     }
 
     @Override
-    public void removeFavorito(RemoveFavoritoCallback callback, Favorito fav) {
-        favoritoDataSource.removeFavorito(callback,fav);
+    public void removeFavorito(RemoveFavoritoCallback callback, UUID alojamientoId) {
+        favoritoDataSource.removeFavorito(callback, alojamientoId);
     }
 }

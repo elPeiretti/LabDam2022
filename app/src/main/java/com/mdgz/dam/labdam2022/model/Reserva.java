@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -14,22 +15,28 @@ public class Reserva {
     @NonNull
     private Integer id;
     private Instant fechaIngreso;
-    private Instant fechaEgreso;
+    private Instant fechaSalida;
     private Boolean cancelada;
     private Double monto;
     private UUID alojamientoId;
-    private UUID usuarioID;
+    private UUID usuarioId;
 
     public Reserva(){}
 
-    public Reserva(Integer id, Instant fechaIngreso, Instant fechaEgreso, Boolean cancelada, Double monto, UUID alojamientoId, UUID usuarioID){
+    public Reserva(Integer id, Instant fechaIngreso, Instant fechaSalida, Boolean cancelada, Double monto, UUID alojamientoId, UUID usuarioID){
         this.id = id;
         this.fechaIngreso = fechaIngreso;
-        this.fechaEgreso = fechaEgreso;
+        this.fechaSalida = fechaSalida;
         this.cancelada = cancelada;
         this.monto = monto;
         this.alojamientoId = alojamientoId;
-        this.usuarioID = usuarioID;
+        this.usuarioId = usuarioID;
+    }
+    public Reserva(UUID alojId, UUID userId, Instant fechaIngreso, Instant fechaSalida){
+        this.alojamientoId = alojId;
+        this.usuarioId = userId;
+        this.fechaIngreso = fechaIngreso;
+        this.fechaSalida = fechaSalida;
     }
 
     @NonNull
@@ -49,12 +56,12 @@ public class Reserva {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Instant getFechaEgreso() {
-        return fechaEgreso;
+    public Instant getFechaSalida() {
+        return fechaSalida;
     }
 
-    public void setFechaEgreso(Instant fechaEgreso) {
-        this.fechaEgreso = fechaEgreso;
+    public void setFechaSalida(Instant fechaEgreso) {
+        this.fechaSalida = fechaEgreso;
     }
 
     public Boolean getCancelada() {
@@ -82,10 +89,10 @@ public class Reserva {
     }
 
     public UUID getUsuarioID() {
-        return usuarioID;
+        return usuarioId;
     }
 
     public void setUsuarioID(UUID usuarioID) {
-        this.usuarioID = usuarioID;
+        this.usuarioId = usuarioID;
     }
 }

@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,14 +25,14 @@ import com.mdgz.dam.labdam2022.persistencia.repo.FavoritoRepository;
 import java.util.List;
 
 
-public class ResultadoBusquedaFragment extends Fragment implements OnResult<List<Alojamiento>> {
+public class ResultadoBusquedaFragment extends Fragment implements OnResult<List<Alojamiento>>, FavoritoDataSource.GetAllFavoritosCallback {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private Context ctx = this.getContext();
     private FragmentResultadoBusquedaBinding binding;
-    private List<Favorito> favoritos;
+    private List<Alojamiento> result;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,18 +84,40 @@ public class ResultadoBusquedaFragment extends Fragment implements OnResult<List
         recyclerView.setLayoutManager(layoutManager);
         //para cargar los alojamientos
         AlojamientoRepository.createInstance(ctx).getAllAlojamientos(this);
+        FavoritoRepository.createInstance().getAllFavoritos(this);
         recyclerView.setAdapter(mAdapter);
         return binding.getRoot();
     }
 
 
+    //get all alojamientos callback
     @Override
     public void onSuccess(List<Alojamiento> result) {
         mAdapter = new AlojamientoRecyclerAdapter(result, ctx);
+        this.result = result;
     }
 
     @Override
     public void onError(Throwable exception) {
     }
 
+
+    // getAllfavoritos callback
+    @Override
+    public void onError() {
+
+    }
+
+    @Override
+    public void onResult(List<Favorito> favs) {
+        // Esto es muy feo pero no se me ocurrio otra manera.
+        for (Favorito f: favs) {
+            Log.i("favorito", f.getAlojamientoID().toString());
+            for (Alojamiento a : result) {
+                if (f.getAlojamientoID().equals(a.getId()))
+                    a.setEsFav(true);
+            }
+        }
+        mAdapter.notifyDataSetChanged();
+    }
 }
